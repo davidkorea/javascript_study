@@ -31,7 +31,7 @@
 </html>
 ```
 ### 2. Tag Attribute
-标签属性属于强耦合，不推荐使用
+标签属性，结构与行为强耦合，不方便后期维护，不推荐使用
 ```javascript
   <body>
     <button onclick="alert('welcome');">Click</button>
@@ -53,6 +53,34 @@ create `script.js`file in the same folder with html file
 </script>
 ```
 - 一旦引用外部文件，就不能再在script标签带写代码了，即使写了也不会执行，仅执行外部代码
+- 如需要内部js代码，则需要再另行创建一个<script>标签来书写内部代码
+- js代码从上往下顺序执行，需注意外部、内部代码执行顺序
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
