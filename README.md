@@ -4,7 +4,11 @@
 
 ## js and es
 
+`es ≈ js`
 - javascript 编程语言
 - ECMAscript 技术标准，Netscape最初创造了JavaScript语言后，捐献给了欧洲计算机制造商协会（European Computer Manufacturers Association）开源
 
-可以简单理解为 `es ≈ js`，但JavaScript的范围更广泛
+完整的JavaScript由3部分构成
+1. ECMAScript标准
+2. DOM，document object model，操作网页
+3. BOM，browser object model，操作浏览器
