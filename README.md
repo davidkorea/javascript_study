@@ -71,6 +71,7 @@ create `script.js`file in the same folder with html file
         - `\\`斜线
     - Number
       - js可以表示的最大数`console.log(Number.MAX_VALUE);` 1.7976931348623157e+308
+      - js可以表示的最小数`console.log(Number.MIN_VALUE);` 5e-324 但这也是大于0的最小正数，而不是负数
       - 超过上述最大值时，返回`Infinity`正无穷，Infinity本身也是数值型，`-Infinity`为负无穷
         ```javascript
         var a = Infinity;
@@ -78,8 +79,17 @@ create `script.js`file in the same folder with html file
         // return number
         ```
       - `NaN` 也是数值型 Not a number
-
-
+        ```javascript
+        var a = NaN;
+        console.log(typeof a); 
+        // return number
+        ```
+      - 进行浮点型数值运算时，可能得到不准确数值，因为计算机无法用二进制精确表示十进制的十分之一，但其他语言有纠偏机制，而js没有
+        ```
+        var c = 0.1 + 0.2;
+        console.log(c);
+        // return 0.30000000000000004
+        ```
 
 
 
