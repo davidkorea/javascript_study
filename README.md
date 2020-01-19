@@ -13,6 +13,11 @@
 2. DOM，document object model，操作网页
 3. BOM，browser object model，操作浏览器
 
+## Rules
+1. 每条js语句后要加分号`;`，虽然不写，浏览器会自行补全并运行，但影响效率
+
+
+
 ## Usage
 ### 1. Script
 ```javascript
