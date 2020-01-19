@@ -14,8 +14,8 @@
 3. BOM，browser object model，操作浏览器
 
 ## Usage
-
-```js
+### 1. Script
+```javascript
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -30,3 +30,31 @@
   </body>
 </html>
 ```
+### 2. Tag Attribute
+标签属性属于强耦合，不推荐使用
+```javascript
+  <body>
+    <button onclick="alert('welcome');">Click</button>
+    
+    <a href="javascript:alert('link');">Click link</a>
+    <a href="javascript:;">blank link</a>    
+  </body>
+```
+- 点击按钮时，弹窗
+- 点击超链接时，弹窗
+- 点击超链接，空白相应
+
+### 3. 引用外部文件
+create `script.js`file in the same folder with html file
+
+```javascript
+<script type="text/javascript" src="script.js"> 
+
+</script>
+```
+- 一旦引用外部文件，就不能再在script标签带写代码了，即使写了也不会执行，仅执行外部代码
+
+
+
+
+
