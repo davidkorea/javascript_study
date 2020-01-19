@@ -9,6 +9,24 @@
 - ECMAscript 技术标准，Netscape最初创造了JavaScript语言后，捐献给了欧洲计算机制造商协会（European Computer Manufacturers Association）开源
 
 完整的JavaScript由3部分构成
-1. ECMAScript标准
+1. ECMAScript，标准
 2. DOM，document object model，操作网页
 3. BOM，browser object model，操作浏览器
+
+## Usage
+
+```js
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+      // javascript code here
+    </script>
+  </head>
+  <body>
+    
+  </body>
+</html>
+```
