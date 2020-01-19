@@ -60,23 +60,24 @@ create `script.js`file in the same folder with html file
 ## Rules
 1. 每条js语句后要加分号`;`，虽然不写，浏览器会自行补全并运行，但影响效率
 2. 通过`var`来定义和赋值变量 `var age = 10;`，规范使用驼峰命名法`firstName`
-  - 类似python，js无需要在定义变量时定义数据类型的动态语言
-  - `console.log(typeof age);` 通过`typeof `函数查看变量类型
+    - 类似python，js无需要在定义变量时定义数据类型的动态语言
+    - `console.log(typeof age);` 通过`typeof `函数查看变量类型
 3. 6种数据类型， 基本数据类型String，Number，Boolean，Null，Undefined 以及 引用数据类型Object
-  - String
-    - 单引号，双引号嵌套
-    - 需要显示引号，或特殊字符时，转义字符`\`+ 单引号或双引号
-      - `\n`换行
-      - `\t`制表符
-      - `\\`斜线
-  - Number
-    - js可以表示的最大数`console.log(Number.MAX_VALUE);` 1.7976931348623157e+308
-    - 超过上述最大值时，返回`Infinity`正无穷，Infinity本身也是数值型，`-Infinity`为负无穷
-      ```javascript
-      var a = Infinity;
-      console.log(typeof a); 
-      // return number
-      ```
+    - String
+      - 单引号，双引号嵌套
+      - 需要显示引号，或特殊字符时，转义字符`\`+ 单引号或双引号
+        - `\n`换行
+        - `\t`制表符
+        - `\\`斜线
+    - Number
+      - js可以表示的最大数`console.log(Number.MAX_VALUE);` 1.7976931348623157e+308
+      - 超过上述最大值时，返回`Infinity`正无穷，Infinity本身也是数值型，`-Infinity`为负无穷
+        ```javascript
+        var a = Infinity;
+        console.log(typeof a); 
+        // return number
+        ```
+      - `NaN` 也是数值型 Not a number
 
 
 
