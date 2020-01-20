@@ -90,7 +90,18 @@ create `script.js`file in the same folder with html file
         console.log(c);
         // return 0.30000000000000004
         ```
-
+    - Boolean
+      ```javascript
+      var bool = true;
+      console.log(typeof bool);
+      // return boolean
+      ```
+    - Null
+      ```javascript
+      var a = null;
+      console.log(typeof a);
+      // return object
+      ```
 
 
 
