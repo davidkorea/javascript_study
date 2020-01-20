@@ -110,7 +110,23 @@ create `script.js`file in the same folder with html file
       ```
 
 4. 强制类型转换
-    - 
+    - 转换为string
+      - `toString()`方法，Null和Undefined没有此方法
+        ```javascript
+        var x = 123;
+        var y = x.toString();
+        console.log(typeof x);
+        console.log(typeof y);
+        // return number
+        // return string
+        ```
+        - `toString()方法不改变原变量的数值类型`
+        - 可是使用`a = a.toString()`来覆盖掉原变量的数据类型
+      - `String()`函数
+      
+    - 转换为number
+    
+    - 转换为boolean
 
 
 
