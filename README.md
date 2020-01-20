@@ -165,7 +165,20 @@ create `script.js`file in the same folder with html file
           - false -> 0
         - null -> 0
         - undefiend -> NaN
-      
+      - 数字+字符串，转数值`parseInt()`,`parseFloat()`
+        ```javascript
+        var a = "123.45 px";
+        var b = parseInt(a);
+        var c = parseFloat(a);
+        console.log(b);
+        console.log(c);
+        // return 123
+        // return 123.45
+        ```
+        - `"a123 bc"`不实用，转换为NaN，只适用于数字开头的字符串
+        - 非字符串值，如boolean值会先转换为字符串再转换为数字，那么true -> NaN
+        
+        
       
     - **转换为boolean**
 
