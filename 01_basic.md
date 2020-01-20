@@ -66,6 +66,7 @@ JavaScript代码从上往下，顺序执行
 - 变量 `var a = 1;`
 - 表达式 `a++;`，`++a;`
 
+#### `a++`
 ```javascript
 var a = 1;
 console.log(a++);
@@ -77,12 +78,35 @@ console.log("a = ",a);
 
 ```javascript
 var a = 1;
+var b = a++;
+console.log("b = ", b);
+console.log("a = ", a);
+// b = 1, a = 2
+```
+![image](https://user-images.githubusercontent.com/26485327/72713423-5d128880-3bb0-11ea-94c1-3d4bc5bed96d.png)
+- 表达式返回值为 自行前的原变量值
+- 但是表达式，实际上已经执行了自增1并复制给了原变量，原变量已经变成了2
+
+#### `++a`
+```javascript
+var a = 1;
 console.log(++a);
 console.log("a = ",a);
 ```
 ![image](https://user-images.githubusercontent.com/26485327/72712684-e1fca280-3bae-11ea-8bb5-ef913a329155.png)
 - 表达式`++a`的返回值是 自增后的数值
 
+那么，
+```javascript
+var a = 1;
+var result = a++ + ++a + a;
+console.log("a = ", a);
+console.log("result = ", result);
+// a= 3, result = 7
+```
+- 表达式a++ -> 1, 执行表达式后，变量值a = 2
+- 表达式++a -> 3, 执行表达式后，变量值a = 3
+- result = 1 + 3 + 3
 
 
 
