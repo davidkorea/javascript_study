@@ -122,8 +122,15 @@ create `script.js`file in the same folder with html file
         ```
         - `toString()方法不改变原变量的数值类型`
         - 可是使用`a = a.toString()`来覆盖掉原变量的数据类型
-      - `String()`函数
-      
+      - `String()`函数，可以将null和undefined直接转换为字符串“null”和“undefined”
+        ```javascript
+        var x = null;
+        var y = String(x);
+        console.log(typeof x);
+        console.log(typeof y);
+        // return object
+        // return string
+        ```
     - 转换为number
     
     - 转换为boolean
