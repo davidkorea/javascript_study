@@ -96,15 +96,21 @@ create `script.js`file in the same folder with html file
       console.log(typeof bool);
       // return boolean
       ```
-    - Null
+    - Null 空值，是一个对象类型
       ```javascript
       var a = null;
       console.log(typeof a);
       // return object
       ```
+    - Undefined 未定义，当声明一个变量，且不给变量赋值时，该变量为undefined
+      ```jaavscript
+      var x;
+      console.log(x);
+      // return undifined
+      ```
 
-
-
+4. 强制类型转换
+    - 
 
 
 
