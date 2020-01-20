@@ -104,6 +104,7 @@ console.log("a = ", a);
 console.log("result = ", result);
 // a= 3, result = 7
 ```
+![image](https://user-images.githubusercontent.com/26485327/72713829-11141380-3bb1-11ea-99e2-4cf8342b2e00.png)
 - 表达式a++ -> 1, 执行表达式后，变量值a = 2
 - 表达式++a -> 3, 执行表达式后，变量值a = 3
 - result = 1 + 3 + 3
