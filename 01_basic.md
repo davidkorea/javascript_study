@@ -26,7 +26,9 @@ JavaScript代码从上往下，顺序执行
 - true + null = 1
 - 123 + "abc" = "123abc"，任何值与字符串相加，相当于字符串拼接
   - 用于长字符串换行后拼接
-  - 数字+空字符串`""`，用于将数值型转换为字符型
+  - 用于将数值型转换为字符型
+    - 数字+空字符串`""`
+    - `a = +"18"` -> 18
   - `console.log("result = " + )`
     ```javascript      
     var result = 123
@@ -37,7 +39,7 @@ JavaScript代码从上往下，顺序执行
 
   - `var a = 1 + 2 + "3"` -> "33"
   - `var a = "1" + 2 + 3` -> "123"
-  
+  - `var a = 1 + 2 + +"3"` -> 6, 因为加号将字符串转换为了数字
   
 ### 减法运算
 - `var a = 100 - true` -> 99
@@ -59,7 +61,27 @@ JavaScript代码从上往下，顺序执行
 - `var a = 9 / 3` -> 0，9除以3得3余0
 - `var a = 9 / 4` -> 1，9除以4得2余1
 
+### 自增自减
+变量和表达式不同
+- 变量 `var a = 1;`
+- 表达式 `a++;`，`++a;`
 
+```javascript
+var a = 1;
+console.log(a++);
+console.log("a = ",a);
+```
+![image](https://user-images.githubusercontent.com/26485327/72712517-8d592780-3bae-11ea-93d8-6de464f313bc.png)
+- 表达式`a++`的返回值是 原变量的值
+- 表达式执行后表示为原变量自增1且赋值回给原变量`a = a + 1`
+
+```javascript
+var a = 1;
+console.log(++a);
+console.log("a = ",a);
+```
+![image](https://user-images.githubusercontent.com/26485327/72712684-e1fca280-3bae-11ea-8bb5-ef913a329155.png)
+- 表达式`++a`的返回值是 自增后的数值
 
 
 
