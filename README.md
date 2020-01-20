@@ -131,8 +131,8 @@ create `script.js`file in the same folder with html file
         // return object
         // return string
         ```
-    - **转换为number
-      - `Number()`函数**
+    - **转换为number**
+      - `Number()`函数
         - 字符串中只有数字
           ```javascript
           var a = "123";
@@ -177,12 +177,35 @@ create `script.js`file in the same folder with html file
         ```
         - `"a123 bc"`不实用，转换为NaN，只适用于数字开头的字符串
         - 非字符串值，如boolean值会先转换为字符串再转换为数字，那么true -> NaN
-        
-        
-      
-    - **转换为boolean**
-
-
+      - 进制
+        - 十六进制，0x开头
+          ```javascript
+          var a = oxcafe;
+          console.log(a);
+          // return 51966 返回显示为十进制
+          ```
+        - 八进制，0开头，有些浏览器会当做八进制处理，有些浏览器会当成十进制显示
+          ```javascript
+          var a = 070;
+          console.log(a);
+          // return 56 返回显示为十进制
+          ```
+        - 二进制，0b开头。使用的比较少，不是所有浏览器都支持
+          ```javascript
+          var a = 0b10;
+          console.log(a);
+          // return 2 返回显示为十进制
+          ```
+    - **转换为boolean**，`Boolean()`函数
+      - 数字转布尔值
+        - `0`，`NaN` -> false
+        - others -> true
+      - 字符串转布尔值
+        - 空字符串`""` -> false
+        - 其它，包括空格`"  "` -> true
+      - null -> false
+      - undefined -> false
+      - object -> true
 
 
 
