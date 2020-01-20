@@ -131,8 +131,36 @@ create `script.js`file in the same folder with html file
         // return object
         // return string
         ```
-    - 转换为number
-    
+    - 转换为number，`Number()`函数
+      - 字符串中只有数字
+        ```javascript
+        var a = "123";
+        console.log(typeof a);
+        var b = Number(a);
+        console.log(typeof b);
+        // return string
+        // return number
+        ```
+      - 字符串中含有字母，则转换为`NaN`
+        ```javascript
+        var a = "1aa23";
+        var b = Number(a);
+        console.log(typeof b);
+        console.log(b);
+        // return number
+        // return NaN
+        ```
+      - 空字符串`""`,`"    "`转换为数值`0`
+        ```javascript
+        var a = "";
+        var b = Number(a);
+        console.log(typeof b);
+        console.log(b);
+        // return number
+        // return 0
+        ```
+      
+      
     - 转换为boolean
 
 
