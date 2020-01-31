@@ -1,5 +1,6 @@
 
 # 1. `if...else if...else`
+### 1.1 Basics
 ```javascript
 if(条件表达式1){
   多条语句; 
@@ -13,7 +14,7 @@ if(条件表达式1){
 }
 ```
 
-### 1. Basics
+
 
 ```javascript
 var a = 10;
@@ -35,7 +36,7 @@ if (a > 10)
 - 将if后的全部语句都放在一个代码块中，可以改善上述情况
 - 但是`{}`代码块并不是必须，推荐如此使用
 
-### 2. Exanples
+### 1.2 Exanples
 
 输入三个整数，输出排序后的三个数字
 
@@ -69,7 +70,7 @@ if (num1 > num2 && num1 > mun3) {
 - **`prompt()`函数的返回值类型为string，通过加号`+`将其输入值转换为数值类型**
 
 # 2. `switch...case`
-### Basic
+### 2.1 Basic
 ```javascript
 switch(条件表达式){
   case 表达式数值1:
@@ -90,7 +91,7 @@ switch(条件表达式){
   - 注意⚠️，每个case语句后面都要有`break;`
 - 不满足所有case时，执行default
 
-### Examples
+### 2.2 Examples
 输入数字，输出对应星期
 ```javascript
 var num = +prompt('input a integer: ');   // change str to num by plus +
