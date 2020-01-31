@@ -109,5 +109,20 @@ console.log("result = ", result);
 - 表达式++a -> 3, 执行表达式后，变量值a = 3
 - result = 1 + 3 + 3
 
+```javascript
+var a = 1;
+a = a++;
+console.log(a);
+// return a=1
+```
+- because `a++` equals the origin value of `a`, so `a++` is still 1.
+- when excute the expression `a++` the value of `a` is 2. 
+- then set a = 1 again
+
+
+
+
+
+
 
 
