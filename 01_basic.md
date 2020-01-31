@@ -120,8 +120,13 @@ console.log(a);
 - then set a = 1 again
 
 
-
-
+#### 自减 `a--`，`--a`
+```javascript
+var a = 10;
+console.log(a--);
+```
+- `console.log(a--);`，表达式返回原变量值10，此时变量a的值为9
+- `console.log(--a);`，表达式返回9，此时变量a的值为9
 
 
 
