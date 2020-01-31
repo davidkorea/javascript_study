@@ -69,7 +69,7 @@ if (num1 > num2 && num1 > mun3) {
 - **`prompt()`函数的返回值类型为string，通过加号`+`将其输入值转换为数值类型**
 
 # 2. `switch...case`
-
+### Basic
 ```javascript
 switch(条件表达式){
   case 表达式数值1:
@@ -90,7 +90,8 @@ switch(条件表达式){
   - 注意⚠️，每个case语句后面都要有`break;`
 - 不满足所有case时，执行default
 
-
+### Examples
+输入数字，输出对应星期
 ```javascript
 var num = +prompt('input a integer: ');   // change str to num by plus +
 
@@ -115,6 +116,37 @@ switch (num) {
         break
 }
 ```
+
+高于60分输出合格，否则输出不合格
+```javascript
+var score = 77;
+cond = score > 60;        // my thought
+switch (cond) {
+    case true:
+        alert('pass');
+        break;
+    default:
+        alert('failed');
+        break;
+}
+```
+- 通过新增一个变量来判断是否大于60
+```javascript
+var score = 99.5;
+switch (true) {           // no need to use a new var
+    case score > 60:      // if `score>60` is true and is the same as `switch true`
+        alert('pass');
+        break;
+    default:
+        alert('failed');
+        break;
+}
+```
+- 无需新增变量
+- 当case表达式的结果和switch表达式的结果完全一致时，执行该case
+- 直接使用if即可
+
+
 
 
 
