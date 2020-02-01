@@ -1,5 +1,5 @@
 # 终止循环
-### 1. `break` 
+### 1. `break`，终止整个循环 
 1. 默认多层循环嵌套时，break仅跳出当前循环，外层循环继续执行
 2. 为循环贴标签label后，break制定循环
 ```javascript
@@ -12,7 +12,45 @@ hello: for (var i = 1; i < 5; i++) {
 }
 ```
 
-### 2. `continue`
+输出1-100的质数，比较有无break
+```javascript
+console.time('timer1')
+for (var i = 2; i < 10000; i++) {
+    var flag = false;
+    for (var j = 2; j < i; j++) {
+        if (i % j == 0) {
+            break;
+        } else {
+            flag = true;
+        }
+    }
+    if (flag) {
+        // console.log('yes----------' + i);
+    }
+}
+console.timeEnd('timer1')
+// timer1: 0.098876953125ms
+
+
+console.time('timer2')
+for (var i = 2; i < 10000; i++) {
+    var flag = false;
+    for (var j = 2; j < i; j++) {
+        if (i % j != 0) {
+            flag = true;
+        }
+    }
+    if (flag) {
+        // console.log('yes----------' + i);
+    }
+}
+console.timeEnd('timer2')
+// timer2: 0.2919921875ms
+```
+- `console.time('timer1')`，开始计时器
+- `console.timeEnd('timer1')`，终止计时器
+
+### 2. `continue`，终止当次循环
 1. 默认多层嵌套时，跳过本层的当次循环，继续执行本层循环体内剩余内容，以及外层循环
 2. 也可以贴标签label来制定跳过某层循环的某次
 ```javascript
