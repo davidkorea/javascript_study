@@ -85,7 +85,11 @@ var age = 18;
     ```
     <img width="419" alt="截屏2020-02-01下午10 01 05" src="https://user-images.githubusercontent.com/26485327/73593353-5a178080-453e-11ea-9586-067e3a8301a6.png">
 
-
+3. 检查一个属性是在包含于一个对象中
+    ```javascript
+    console.log('text' in obj);
+    // true
+    ```
 
 
 
