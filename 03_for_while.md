@@ -171,5 +171,20 @@ if (flag) {
 - if (!(num % i))
 - if (num % i == 0)
 
-
-        
+打印斜三角
+```
+*
+**
+***
+****
+*****
+```
+```javascript
+var num = 5
+for (var i = 1; i <= num; i++) {
+    for (var j = 1; j <= i; j++) {
+        document.write('*');
+    }
+    document.write('</br>')
+}
+```
