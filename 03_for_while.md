@@ -197,13 +197,7 @@ for (i = 1; i <= num; i++) {
 
 
 打印斜三角
-```
-*
-**
-***
-****
-*****
-```
+
 ```javascript
 var num = 5
 for (var i = 1; i <= num; i++) {
@@ -212,6 +206,29 @@ for (var i = 1; i <= num; i++) {
     }
     document.write('</br>')
 }
+```
+```
+*
+**
+***
+****
+```
+
+```javascript
+var num = 5;
+
+for (i = 1; i <= num; i++) {
+    for (j = num; j >= i; j--) {
+        document.write('*&nbsp;&nbsp;&nbsp;');
+    }
+    document.write('</br>')
+}
+```
+```
+*   *   *   *   
+*   *   *   
+*   *   
+*   
 ```
 
 九九乘法表
