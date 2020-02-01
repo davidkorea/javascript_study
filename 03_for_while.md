@@ -251,3 +251,27 @@ for (var i = 1; i <= 9; i++) {
 8x1=8 8x2=16 8x3=24 8x4=32 8x5=40 8x6=48 8x7=56 8x8=64
 9x1=9 9x2=18 9x3=27 9x4=36 9x5=45 9x6=54 9x7=63 9x8=72 9x9=81
 ```
+```javascript
+<script>
+for (var i = 1; i <= 9; i++) {
+    for (var j = 1; j <= i; j++) {
+        document.write('<span>', i, 'x', j, '=', i * j, '</span>');
+    }
+    document.write('</br>')
+}
+</script>
+
+<style>
+    span {
+        display: inline-block;
+        width: 70px;
+    }
+</style>
+```
+<img width="1066" alt="截屏2020-02-01下午2 50 12" src="https://user-images.githubusercontent.com/26485327/73588313-7f869900-4502-11ea-9375-ad2efc75ba82.png">
+
+
+
+
+
+
