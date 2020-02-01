@@ -1,4 +1,4 @@
-数据类型
+### 数据类型
 - string
 - number
 - boolean
@@ -17,7 +17,7 @@ var age = 18;
 - 把几个商品放在你自己的**塑料袋**里，那么这些商品就是你的
 - 此处，将多个变量保存在同一个对象中，也即，一个对象可以有多种不同变量类型
 
-对象的分类
+### 对象的分类
 1. 内建对象
     - ES标准中定义的对象，任何ES的实现中都可以直接使用，如浏览器，node.js
     - Math，String，Number等等
@@ -53,7 +53,37 @@ var age = 18;
         - `delete 对象.属性名;`
 
 
+# 对象名和对象的值
+### 属性名
+1. `对象名.属性名 = 属性值`
+2. `对象名["属性名"] = 属性值`，此种方式更加灵活，已经传入变量来当作属性名，即中括号可以传递变量
+    ```javascript
+    var obj = new Object();
+    obj['nihao'] = 'hello';
 
+    var i = 'nihao';
+    console.log(obj[i]);   
+    // hello
+    ```
+### 属性值
+1. 属性值可以是任何单一数据类型
+2. 属性值也可以是一个对象
+    ```javascript
+    var obj = new Object();
+    obj.name = 'david';
+    obj.gender = 'male';
+    obj.age = 18;
+
+    var obj2 = new Object();
+    obj2.name = 'korea';
+    obj2.age = 22;
+
+    obj.text = obj2;        // 对象的属性值可以是一个对象
+    console.log(obj);
+    
+    // {name: "david", gender: "male", age: 18, text: {…}}
+    ```
+    <img width="419" alt="截屏2020-02-01下午10 01 05" src="https://user-images.githubusercontent.com/26485327/73593353-5a178080-453e-11ea-9586-067e3a8301a6.png">
 
 
 
