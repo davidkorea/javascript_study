@@ -1,97 +1,3 @@
-# 终止循环
-### 1. `break`，终止整个循环 
-1. 默认多层循环嵌套时，break仅跳出当前循环，外层循环继续执行
-2. 为循环贴标签label后，break制定循环
-```javascript
-hello: for (var i = 1; i < 5; i++) {
-    console.log('outer loop');
-    for (var j = 1; j < 5; j++) {
-        console.log('inner loop');
-        break hello;
-    }
-}
-```
-
-输出1-100,000的质数，比较有无break
-```javascript
-console.time('timer1')
-for (var i = 2; i < 100000; i++) {
-    var flag = false;
-    for (var j = 2; j < i; j++) {           // 优化 j<i -> j < Math.sqrt(i)
-        if (i % j == 0) {
-            break;
-        } else {
-            flag = true;
-        }
-    }
-    if (flag) {
-        // console.log('yes----------' + i);
-    }
-}
-console.timeEnd('timer1')
-// timer1: 1536.155029296875ms
-
-
-console.time('timer2')
-for (var i = 2; i < 100000; i++) {
-    var flag = false;
-    for (var j = 2; j < i; j++) {
-        if (i % j != 0) {
-            flag = true;
-        }
-    }
-    if (flag) {
-        // console.log('yes----------' + i);
-    }
-}
-console.timeEnd('timer2')
-// timer2: 17118.585205078125ms
-```
-- `console.time('timer1')`，开始计时器
-- `console.timeEnd('timer1')`，终止计时器
-
-
-优化
-```
-console.time('timer3')
-for (var i = 2; i < 100000; i++) {
-    var flag = false;
-    for (var j = 2; j < Math.sqrt(i); j++) {
-        if (i % j == 0) {
-            break;
-        } else {
-            flag = true;
-        }
-    }
-    if (flag) {
-        // console.log('yes----------' + i);
-    }
-}
-console.timeEnd('timer3')
-// timer3: 16.05810546875ms
-```
-- 比如36的因数可分解为（1 36），（2 18），（3 12），（4 9），（6 6），在6之后再有新的组合
-- 而最大的6 就是 根号36
-- 其他的数字也是，超过根号其本身，就不会再有新的因数组合
-- 所以不需要找到这个数前面的所有数字，只需要找到根号这个数字之前的所有数字即可
-
-**根号优化后16ms，break优化1536ms，无优化17118ms，时间缩短1000倍极为明显**
-
-
-### 2. `continue`，终止当次循环
-1. 默认多层嵌套时，跳过本层的当次循环，继续执行本层循环体内剩余内容，以及外层循环
-2. 也可以贴标签label来制定跳过某层循环的某次
-```javascript
-for (var i = 1; i < 5; i++) {
-    if (i == 2) {
-        continue;
-    }
-    console.log(i);
-}
-// 1
-// 3
-// 4
-```
 
 
 # 1. `while`
@@ -367,6 +273,99 @@ for (var i = 1; i <= 9; i++) {
 <img width="1066" alt="截屏2020-02-01下午2 50 12" src="https://user-images.githubusercontent.com/26485327/73588313-7f869900-4502-11ea-9375-ad2efc75ba82.png">
 
 
+# 3. 终止循环
+### 1. `break`，终止整个循环 
+1. 默认多层循环嵌套时，break仅跳出当前循环，外层循环继续执行
+2. 为循环贴标签label后，break制定循环
+```javascript
+hello: for (var i = 1; i < 5; i++) {
+    console.log('outer loop');
+    for (var j = 1; j < 5; j++) {
+        console.log('inner loop');
+        break hello;
+    }
+}
+```
+
+输出1-100,000的质数，比较有无break
+```javascript
+console.time('timer1')
+for (var i = 2; i < 100000; i++) {
+    var flag = false;
+    for (var j = 2; j < i; j++) {           // 优化 j<i -> j <= Math.sqrt(i)
+        if (i % j == 0) {
+            break;
+        } else {
+            flag = true;
+        }
+    }
+    if (flag) {
+        // console.log('yes----------' + i);
+    }
+}
+console.timeEnd('timer1')
+// timer1: 1536.155029296875ms
+
+
+console.time('timer2')
+for (var i = 2; i < 100000; i++) {
+    var flag = false;
+    for (var j = 2; j < i; j++) {
+        if (i % j != 0) {
+            flag = true;
+        }
+    }
+    if (flag) {
+        // console.log('yes----------' + i);
+    }
+}
+console.timeEnd('timer2')
+// timer2: 17118.585205078125ms
+```
+- `console.time('timer1')`，开始计时器
+- `console.timeEnd('timer1')`，终止计时器
+
+
+**优化**
+```javascript
+console.time('timer3')
+for (var i = 2; i < 100000; i++) {
+    var flag = false;
+    for (var j = 2; j <= Math.sqrt(i); j++) {
+        if (i % j == 0) {
+            break;
+        } else {
+            flag = true;
+        }
+    }
+    if (flag) {
+        // console.log('yes----------' + i);
+    }
+}
+console.timeEnd('timer3')
+// timer3: 16.05810546875ms
+```
+- 比如36的因数可分解为（1 36），（2 18），（3 12），（4 9），（6 6），在6之后再有新的组合，而最大的6 就是 根号36
+- 其他的数字也是，超过根号其本身，就不会再有新的因数组合
+- 所以不需要找到这个数前面的所有数字，只需要找到根号这个数字之前的所有数字即可
+
+**根号优化后16ms，break优化1536ms，无优化17118ms，时间缩短1000倍极为明显**
+
+
+### 2. `continue`，终止当次循环
+1. 默认多层嵌套时，跳过本层的当次循环，继续执行本层循环体内剩余内容，以及外层循环
+2. 也可以贴标签label来制定跳过某层循环的某次
+```javascript
+for (var i = 1; i < 5; i++) {
+    if (i == 2) {
+        continue;
+    }
+    console.log(i);
+}
+// 1
+// 3
+// 4
+```
 
 
 
