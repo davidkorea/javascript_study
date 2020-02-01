@@ -1,3 +1,33 @@
+# 终止循环
+### 1. `break` 
+1. 默认多层循环嵌套时，break仅跳出当前循环，外层循环继续执行
+2. 为循环贴标签label后，break制定循环
+```javascript
+hello: for (var i = 1; i < 5; i++) {
+    console.log('outer loop');
+    for (var j = 1; j < 5; j++) {
+        console.log('inner loop');
+        break hello;
+    }
+}
+```
+
+### 2. `continue`
+1. 默认多层嵌套时，跳过本层的当次循环，继续执行本层循环体内剩余内容，以及外层循环
+2. 也可以贴标签label来制定跳过某层循环的某次
+```javascript
+for (var i = 1; i < 5; i++) {
+    if (i == 2) {
+        continue;
+    }
+    console.log(i);
+}
+// 1
+// 3
+// 4
+```
+
+
 # 1. `while`
 ### 1. Basics
 - `while(){}`，先判断，再执行
