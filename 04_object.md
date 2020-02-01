@@ -1,13 +1,14 @@
 ### 数据类型
-- string
-- number
-- boolean
-- null
-- undefined
-- **object**
+- 一般数据类型
+    - string
+    - number
+    - boolean
+    - null
+    - undefined
+- 引用数据类型
+    - **object**
 
-举例说明
-当描述一个人的信息时，姓名，性别，年龄，可以使用单一类型变量表示，但是相互没有联系，一个年龄的数字和一个姓名对应的不一定是同一个人
+举例说明，当描述一个人的信息时，姓名，性别，年龄，可以使用单一类型变量表示，但是相互没有联系，一个年龄的数字和一个姓名对应的不一定是同一个人
 ```javascript
 var name = 'david';
 var gender = 'male';
@@ -91,7 +92,37 @@ var age = 18;
     // true
     ```
 
+# 比较一般数据类型和引用数据类型
 
+- 一般数据类型保存在栈内存，类似表格
+    ```javascript
+    var a = 123;
+    var b = a;
+    a = 456;
+    
+    console.log(a);     // 456
+    console.log(b);     // 123
+    ```
+    - 因为b=a，是将变量a的值保存在了变量b对应的栈内存，更改a的数值，并不会改变b的值
+- 引用数据类型（对象）保存在堆内存
+    ```javascript
+    var obj1 = new Object();
+    obj1.age = 10;
+    
+    var obj2 = obj1;
+    
+    obj1.age = 20;
+    console.log(obj1);      // {age = 20}
+    console.log(obj2);      // {age = 20}
+    ```
+    - 变量名obj1保存在栈内存，obj1变量值指向了堆内存的内存地址
+    - new关键字执行在堆内存中开辟一块空间
+    - obj2=obj1，表示将栈内存中变量obj1的值，也即一个堆内存的内存地址给了obj2这个变量
+        - 因为此处并不是new，所以不开辟新的堆内存空间
+    - 当修改了堆内存的数值时，obj1和obj2都会随之更改，因为二者指向同一块堆内存空间
+    
+    
+    
 
 
 
