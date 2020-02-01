@@ -147,7 +147,26 @@ for (var i = 100, x, y, z; i < 1000; i++) {
 // 4 0 7 ----- 407
 ```
 
+判断输入数值是否为质数，质数只能被1和自己整除，1不是质数也不是和数
+```javascript
+do {
+    var num = +prompt('input a number bigger than 1 : ');
+} while (num <= 1)
 
+var flag = true;
+
+for (var i = num - 1; i > 1; i--) {
+    console.log(i);
+    if (!(num % i)) {   // 没有余数（num % i = 0），则说明被除了1和本身以外其他数字整除，不是质数
+        flag = false;   // num % i = 0）=false，需要将该条件转换为true，在设置标识位
+    }
+}
+if (flag) {
+    alert('Yes');
+} else {
+    alert('No');
+}
+```
 
 
 
