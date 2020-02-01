@@ -159,7 +159,7 @@ for (var i = num - 1; i > 1; i--) {
     console.log(i);
     if (!(num % i)) {   // 没有余数（num % i = 0），则说明被除了1和本身以外其他数字整除，不是质数
         flag = false;   // num % i = 0）=false，需要将该条件转换为true，在设置标识位
-    }
+    }                   // 或者使用 if( num % i == 0 )
 }
 if (flag) {
     alert('Yes');
@@ -167,7 +167,9 @@ if (flag) {
     alert('No');
 }
 ```
-
+- 将输入的数字和1之外的其他数字找出来，依次做除法。如果有能被整出的数字出现，则该输入数值不是质数
+- if (!(num % i))
+- if (num % i == 0)
 
 
         
