@@ -243,15 +243,40 @@ key:  sum  --- value:  ƒ (a, b) {
   function fun1(e) {
       console.log(e);
   }
-  fun1();       // undefined
+  fun1();       // 此处()中没有传递实参，所以对应函数内部就是声明了变量，但没有赋值
+  // undefined
   ```
-  - 函数的形参相当于在函数内部定义了一个变量，如果不赋值，则返回undefined
   <img width="248" alt="截屏2020-02-02下午8 13 12" src="https://user-images.githubusercontent.com/26485327/73608011-72e46c80-45f8-11ea-84dd-351c28edfc9b.png">
+  
+  ```javascript
+  var a = 10;
+
+  function fun1(a) {
+      console.log(a);       // undefined,因为调用函数时，没有传递实参
+      a = 22;               // 因为有形参，相当于定义了局部变量，此时不实用var，也是复制给局部变量，不影响外部变量
+  }
+  fun1();
+  console.log(a);           // 10
+  ```
 
 - 函数作用域中的**函数声明提前**，同上，函数中的代码运行之前，`function 函数名(){...}`会被首先创建，而`var func = function(){...}`仅声明一个变量名，不会赋值后面的函数
 
 
+# 7. debug
+```javascript
+alert(d);
 
+var a = 10;
+var b = 20;
+c = 30;
+
+function func() {
+    console.log('hello');
+}
+var d = 40;
+```
+<img width="902" alt="截屏2020-02-02下午8 44 57" src="https://user-images.githubusercontent.com/26485327/73608352-e12b2e00-45fc-11ea-829a-bb495772bd0d.png">
+- 需要手动添加需要视器的变量大搜监视器watch
 
 
 
