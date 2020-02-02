@@ -5,7 +5,7 @@
 - 函数function是将一个功能封装起来，方便其他函数进行调用
   - `var func = new Function();`
   - 对象具有的功能函数也全都具有
-  - 但是一般是使用构造函数的方式创建一个函数对象，而是使用函数声明或者函数表达式来创建一个函数
+  - 但是一般是使用构造函数的方式创建一个函数对象，而是使用函数声明或者函数表达式来创建一个函数  
   
   
 # 1. 创建函数
@@ -126,7 +126,7 @@ fun1()();   // hello fun2
 } )(1, 2)；   // 3
 ```
 
-# 对象的方法
+# 5. 对象的方法
 - 对象的属性，是一个单一变量类型，str，num，bool
 - 对象的方法，是一个函数
 
@@ -148,7 +148,7 @@ for (var i in obj) {
 ```
 // return
 key:  name  --- value:  plus
-Untitled-1.html:258 key:  sum  --- value:  ƒ (a, b) {
+key:  sum  --- value:  ƒ (a, b) {
             return a + b;
         }
 ```
@@ -157,5 +157,30 @@ Untitled-1.html:258 key:  sum  --- value:  ƒ (a, b) {
 - 通过for...in...枚举一个对象中的属性和方法
 
 
+# 6. 作用域
+## 6.1 全局作用域
+- 全局作用域的代码直接在页面<script>标签下，页面打开时创建，页面关闭时销毁
+- 全局作用域中有一个全局对象window，代表一个浏览器窗口，由浏览器默认创建
+  ```javascript
+  console.log(window);
+  // Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …}
+  ```
+- 在全局作用域中创建的变量，都会作为全局对象window的属性保存，而创建的函数都将作为全局对象window的方法保存
+  ```javascript
+  var a = 10;
+  console.log(window.a);    // 10
+  ```
+- 所有使用var关键字声明的变量，会在所有代码运行之前被程序声明，无论var在程序的哪一行，但不会赋值
+  ```javascript
+  console.log(a);   // undefined
+  var a = 10;       // 因为使用var关键字，所以所有代码运行前，程序已经生命了变量，只是没有赋值
+  ```
+  就相当于
+  ```javascript
+  var a;
+  console.log(a);
+  a = 10;
+  ```
 
+## 6.2 函数作用域
 
