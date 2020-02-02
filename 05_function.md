@@ -71,38 +71,21 @@ sum(2);     // NaN
     - 使用 函数名()，就是使用函数的返回值
 
 # 返回值
-- 有时候一个函数的计算结果需要床底给其他函数使用，而不是console.log来显示
-- 需要return将函数结果传递出来，通过一个变量来接收一个函数的返回结果
+- 返回值可以是任意类型，当然也可以返回一个函数
+- 有时候一个函数的计算结果需要传递给其他函数使用，而不是console.log来显示。需要return将函数结果传递出来，通过一个变量来接收一个函数的返回结果
 - 函数中return后面的语句将不再执行，此处可以和break和continue进行比较
 - 如果函数中没有return语句，将返回undefined
 
-判断偶数
-```javascript
-function oushu(num) {
-    return num % 2 == 0;
-}
 
-var res = oushu(3);
-console.log(res);   //  flase
-```
-
-计算圆的面积
-```
-function sqr(r) {
-    return Math.PI * r * r
-}
-var res = sqr(1);
-console.log(res);
-```
-
-比较return， break， continue
+### 比较return， break， continue
 ```javascript
 function hello() {
     alert('start');
     for (i = 0; i < 5; i++) {
         if (i == 2) {
             break;              // start -> 0 1 -> finish
-            
+            continue;           // start -> 0 1 3 4 -> finish
+            return;             // start -> 0 1
         }
         console.log(i);
     }
@@ -111,6 +94,34 @@ function hello() {
 
 hello();
 ```
+- break 结束整个循环，执行循环后的语句
+- continue 结束本次循环，继续下一个循环
+- return 结束整个函数，return后面的语句不在执行
+
+### 函数嵌套且返回值是一个函数
+```JavaScript
+function fun1() {
+    function fun2() {
+        console.log('hello fun2');
+    }
+    return fun2
+}
+
+fun1()();   // hello fun2
+```
+- fun1函数的返回值是fun2函数本身，注意不是fun2()函数2的返回值，由于没指明默认是undefined，
+- 执行fun1()，就是执行fun1的返回值，也就是fun2
+- 再加一个()，fun1()()，就是执行fun2()
+
+
+
+
+
+
+
+
+
+
 
 
 
