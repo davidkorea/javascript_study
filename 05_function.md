@@ -280,7 +280,8 @@ var d = 40;
 
 
 # 8. this
-- this时有浏览器传递给函数的一个参数
+解析器在调用函数时，每次都会想函数内部传递一个隐藏参数this，该参数称作 **函数执行的上下文**
+- this是由浏览器传递给函数内部的一个参数
 - 根据函数调用的方式不同，this指代的也不同
     1. 函数调用时，this指代window
     2. 方法调用时，谁调用，this指代谁
@@ -302,9 +303,54 @@ obj.methodFun();    // this = obj
 ```
 <img width="714" alt="截屏2020-02-02下午9 23 29" src="https://user-images.githubusercontent.com/26485327/73608806-45042580-4602-11ea-8aa4-a22c4149afb8.png">
 
+存在对个对象，当调用对象的一个方法时，该方法自动输出该对象的name属性的值
+- 因为每个对象都需要实现这个功能，所以单独写好一个函数，来供每个对象中的方法来调用
+- 因为每个对象需要显示其自己的name属性，因为这个功能函数里面不能写死name变量，二十根据谁调用，显示谁的原则来实现
+
+```javascript
+var name = 'global name'
+
+function func() {
+    console.log(name);      // 因为此处写死了name
+}                           // 无论对象方法调用还是函数调用都是返回全局变量的值
+
+var obj1 = {
+    name: 'david',
+    method: func
+}
+var obj2 = {
+    name: 'korea',
+    method: func
+}
+
+func();
+obj1.method();
+obj2.method();
+```
+<img width="340" alt="截屏2020-02-02下午9 49 43" src="https://user-images.githubusercontent.com/26485327/73609163-ee004f80-4605-11ea-9fc8-df0cc31de924.png">
 
 
+改用this来进行指代
+```javascript
+var name = 'global name'
 
+function func() {
+    console.log(this.name);      // this.name，谁调用，显示谁的name属性的值
+}                          
 
+var obj1 = {
+    name: 'david',
+    method: func
+}
+var obj2 = {
+    name: 'korea',
+    method: func
+}
+
+func();
+obj1.method();
+obj2.method();
+```
+<img width="273" alt="截屏2020-02-02下午9 50 07" src="https://user-images.githubusercontent.com/26485327/73609168-fc4e6b80-4605-11ea-8e35-bfe1340624f4.png">
 
 
