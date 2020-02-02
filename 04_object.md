@@ -59,7 +59,7 @@ var age = 18;
     ```
     var obj = new object();
     ```
-2. {}
+2. 通过花括号{}创建对象，经常使用的一种方式
     ```
     var obj = {name:"david", age:18};
     ```
