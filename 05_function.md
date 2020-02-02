@@ -279,8 +279,28 @@ var d = 40;
 - 需要手动添加需要视器的变量大搜监视器watch
 
 
+# 8. this
+- this时有浏览器传递给函数的一个参数
+- 根据函数调用的方式不同，this指代的也不同
+    1. 函数调用时，this指代window
+    2. 方法调用时，谁调用，this指代谁
+- 实际上，上述两点也是一样的，因为调用函数fun()就是调用window.fun()，而window调用了该函数，this就是window
+```javascript
+function func() {
+    console.log(this);
+}
 
+var obj = {
+    name: 'david',
+    methodFun: func
+}
 
+console.log(func == obj.methodFun);   // true 二者完全一样
+
+func();             // this = window
+obj.methodFun();    // this = obj
+```
+<img width="714" alt="截屏2020-02-02下午9 23 29" src="https://user-images.githubusercontent.com/26485327/73608806-45042580-4602-11ea-8aa4-a22c4149afb8.png">
 
 
 
