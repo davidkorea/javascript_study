@@ -203,6 +203,8 @@ key:  sum  --- value:  ƒ (a, b) {
     };
     ```
     <img width="423" alt="截屏2020-02-02下午5 52 25" src="https://user-images.githubusercontent.com/26485327/73606393-cea4fa80-45e4-11ea-989d-85b734440cc6.png">
+    
+
 
 
 ## 6.2 函数作用域
@@ -211,7 +213,7 @@ key:  sum  --- value:  ƒ (a, b) {
 - 在函数中操作一个变量时，有限寻找函数内部的变量，如果不存在，则向上一级作用域寻找，直到找到全局作用域中不存在该变量，则报错
 - 当函数作用域中和函数作用域中有相同变量a，且在函数中想调用全局变量，可以使用windows.a
 - 函数作用域中的**变量声明提前**，同上，函数中的代码运行之前，var关键字声明的变量首先呗声明，但并不赋值
-  - 函数中不实用关键字var声明的变量，就是全局变量，会覆盖原有全局变量的值
+  - 函数中不实用关键字var声明的变量，就是全局变量，相当于window.变量，会覆盖原有全局变量的值
     ```javascript
     var a = 10;
 
@@ -224,7 +226,27 @@ key:  sum  --- value:  ƒ (a, b) {
     console.log('outer: ', a);    // 22
     ```
     <img width="332" alt="截屏2020-02-02下午6 15 39" src="https://user-images.githubusercontent.com/26485327/73606692-05c8db00-45e8-11ea-8b22-4d76d72e6dca.png">
-
+    
+        
+    ```javascript
+    var a = 10;
+    function fun1() {
+        b = 22;           //  没有关键字var，则为全局变量，相当于window.变量
+    }
+    fun1();
+    console.log('b: ', b);
+    ```
+    <img width="270" alt="截屏2020-02-02下午7 54 40" src="https://user-images.githubusercontent.com/26485327/73607804-db7e1a00-45f5-11ea-904b-e4c6b6fbcd50.png">
+- 定义了形参，相当于声明了函数定义域的变量
+  ```javascript
+  var e = 10;
+  function fun1(e) {
+      console.log(e);
+  }
+  fun1();       // undefined
+  ```
+  - 函数的形参相当于在函数内部定义了一个变量，如果不赋值，则返回undefined
+  <img width="248" alt="截屏2020-02-02下午8 13 12" src="https://user-images.githubusercontent.com/26485327/73608011-72e46c80-45f8-11ea-84dd-351c28edfc9b.png">
 
 - 函数作用域中的**函数声明提前**，同上，函数中的代码运行之前，`function 函数名(){...}`会被首先创建，而`var func = function(){...}`仅声明一个变量名，不会赋值后面的函数
 
