@@ -170,17 +170,38 @@ key:  sum  --- value:  ƒ (a, b) {
   var a = 10;
   console.log(window.a);    // 10
   ```
-- 所有使用var关键字声明的变量，会在所有代码运行之前被程序声明，无论var在程序的哪一行，但不会赋值
-  ```javascript
-  console.log(a);   // undefined
-  var a = 10;       // 因为使用var关键字，所以所有代码运行前，程序已经生命了变量，只是没有赋值
-  ```
-  就相当于
-  ```javascript
-  var a;
-  console.log(a);
-  a = 10;
-  ```
+- **变量提前声明**
+  - 所有使用var关键字声明的变量，会在所有代码运行之前被程序声明，无论var在程序的哪一行，但不会赋值
+    ```javascript
+    console.log(a);   // undefined
+    var a = 10;       // 因为使用var关键字，所以所有代码运行前，程序已经生命了变量，只是没有赋值
+    ```
+    就相当于
+    ```javascript
+    var a;
+    console.log(a);
+    a = 10;
+    ```
+
+- **函数提前声明**
+  - 使用函数声明的形式创建的函数，function 函数名(){...}，在程序代码运行之前，就被默认创建
+    - 因此可以在函数声明之前来调用该函数
+  - 使用函数表达式创建的函数，var func = function(){...}，在程序运行之前，仅创建了var声明的变量，并没有赋值
+    - 因此不能在声明函数之前调用该函数
+    ```
+    fun1();
+    fun2();
+
+    function fun1() {
+        console.log('hi, fun1');
+    }
+
+    var fun2 = function() {
+        console.log('hi, fun2');
+    };
+    ```
+    <img width="423" alt="截屏2020-02-02下午5 52 25" src="https://user-images.githubusercontent.com/26485327/73606393-cea4fa80-45e4-11ea-989d-85b734440cc6.png">
+
 
 ## 6.2 函数作用域
 
