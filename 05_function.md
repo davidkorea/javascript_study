@@ -8,7 +8,7 @@
   - 但是一般是使用构造函数的方式创建一个函数对象，而是使用函数声明或者函数表达式来创建一个函数
   
   
-# 创建函数
+# 1. 创建函数
 ### 函数声明
 ```javascript
 function 函数名([形参1，形参2...]){
@@ -30,7 +30,7 @@ var 函数名 = function(){
 - 将一个匿名函数赋值给一个变量
 
 
-# 函数的参数
+# 2. 函数的参数
 - 形参
 - 实参
 ```javascript
@@ -70,7 +70,7 @@ sum(2);     // NaN
     - 使用 函数名，就是调用函数本身
     - 使用 函数名()，就是使用函数的返回值
 
-# 返回值
+# 3. 返回值
 - 返回值可以是任意类型，当然也可以返回一个函数
 - 有时候一个函数的计算结果需要传递给其他函数使用，而不是console.log来显示。需要return将函数结果传递出来，通过一个变量来接收一个函数的返回结果
 - 函数中return后面的语句将不再执行，此处可以和break和continue进行比较
@@ -114,15 +114,47 @@ fun1()();   // hello fun2
 - 再加一个()，fun1()()，就是执行fun2()
 
 
+# 4. 立即执行函数
+适用于仅执行一次的函数
+```javascript
+( function(参数){语句} )()；
+```
 
+```javascript
+( function(a, b) {
+    console.log(a + b);
+} )(1, 2)；   // 3
+```
 
+# 对象的方法
+- 对象的属性，是一个单一变量类型，str，num，bool
+- 对象的方法，是一个函数
 
+```javascript
+var obj = new Object();
+obj.name = 'plus';            // 对象的属性
+obj.sum = function(a, b) {    // 对象的方法
+    return a + b;
+};
 
+obj.sum(1, 2);    // 3
 
-
-
-
-
+// 枚举一个对象中的属性和方法
+for (var i in obj) {          
+    console.log('key: ', i, ' --- value: ', obj[i]);
+}
+// 取出对象属性的值的时候，因为i是变量，需要通过方括号[]来取出变量的值，而不能用点.的方式
+```
+```
+// return
+key:  name  --- value:  plus
+Untitled-1.html:258 key:  sum  --- value:  ƒ (a, b) {
+            return a + b;
+        }
+```
+- console.log()就是调用console的log方法
+- 调用一个对象的方法，就是调用一个函数
+- 通过for...in...枚举一个对象中的属性和方法
 
 
 
