@@ -303,7 +303,7 @@ obj.methodFun();    // this = obj
 ```
 <img width="714" alt="截屏2020-02-02下午9 23 29" src="https://user-images.githubusercontent.com/26485327/73608806-45042580-4602-11ea-8aa4-a22c4149afb8.png">
 
-存在对个对象，当调用对象的一个方法时，该方法自动输出该对象的name属性的值
+举例，存在多个对象，当调用对象的一个方法时，该方法自动输出该对象的name属性的值
 - 因为每个对象都需要实现这个功能，所以单独写好一个函数，来供每个对象中的方法来调用
 - 因为每个对象需要显示其自己的name属性，因为这个功能函数里面不能写死name变量，二十根据谁调用，显示谁的原则来实现
 
@@ -353,4 +353,45 @@ obj2.method();
 ```
 <img width="273" alt="截屏2020-02-02下午9 50 07" src="https://user-images.githubusercontent.com/26485327/73609168-fc4e6b80-4605-11ea-8e35-bfe1340624f4.png">
 
+再如，批量创建对象
+```json
+var obj1 = {
+    name: 'david,
+    age: 18,
+    method: function() {
+        alert(this.name);
+    }
+}
 
+var obj2 = {
+    name: 'korea',
+    age: 18,
+    method: function() {
+        alert(this.name);
+    }
+}
+
+...
+```
+
+```javascript
+function create(name, age) {
+    var obj = {
+        name: name,
+        age: age,
+        method: function() {
+            alert(this.name);
+        }
+    }
+    return obj;
+}
+
+var obj1 = create('david', 22);
+console.log(obj1);
+obj1.method();
+
+var obj2 = create('korea', 18);
+console.log(obj2);
+obj2.method();
+```
+<img width="415" alt="截屏2020-02-02下午10 17 10" src="https://user-images.githubusercontent.com/26485327/73609553-c4492780-4609-11ea-98fa-796cad6809bb.png">
