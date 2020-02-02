@@ -47,7 +47,7 @@ sum(2);     // NaN
   - 当实参个数少于形参个数时，返回NaN，因为缺少的参数为undefined
 - 实参可以是任何变量类型
   - 当函数的参数过多时，可以讲参数打包到一个对象中
-  - 实参也可以是一个函数
+  - 实参也可以是一个函数，因为函数也是一个对象，对象的功能，函数也全都具有
     ```javascript
     function people(o) {
         console.log('i am ', o.name, ',', o.age, ' years old.');
@@ -67,11 +67,13 @@ sum(2);     // NaN
     myFunc(people);       // 实参是一个函数，所以形参a就是一个函数，可以调用a(obj);
     // i am  david , 18  years old.
     ```
+    - 使用 函数名，就是调用函数本身
+    - 使用 函数名()，就是使用函数的返回值
 
 # 返回值
 - 有时候一个函数的计算结果需要床底给其他函数使用，而不是console.log来显示
 - 需要return将函数结果传递出来，通过一个变量来接收一个函数的返回结果
-- 函数中return后面的语句将不再执行
+- 函数中return后面的语句将不再执行，此处可以和break和continue进行比较
 - 如果函数中没有return语句，将返回undefined
 
 判断偶数
@@ -93,7 +95,22 @@ var res = sqr(1);
 console.log(res);
 ```
 
+比较return， break， continue
+```javascript
+function hello() {
+    alert('start');
+    for (i = 0; i < 5; i++) {
+        if (i == 2) {
+            break;              // start -> 0 1 -> finish
+            
+        }
+        console.log(i);
+    }
+    alert('finish');
+}
 
+hello();
+```
 
 
 
