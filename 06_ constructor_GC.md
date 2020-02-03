@@ -197,8 +197,43 @@ console.log(mc.__proto__.__proto__.__proto__);                          // null
 - `对象.__proto__.hasOwnProperty('hasOwnProperty')`，对象的原型中，依然没有找到hasOwnProperty这个方法函数，接下来去对象原型的原型中去找找
 - `对象.__proto__.__proto__.hasOwnProperty('hasOwnProperty')`，诶！找到了
 - 原型还有其自己的原型，再往下就到头了，没有第三层的原型了
+    - 直到找到Object的原型为止，Object的原型没有原型
 
 <img width="506" alt="截屏2020-02-03下午6 01 38" src="https://user-images.githubusercontent.com/26485327/73643857-3b84c700-46af-11ea-90de-3530d5815add.png">
+
+## 对象的toString()方法
+
+- 当通过构建函数创建了一个对象实例后，`console.log(对象实例)`打印出的结果和`对象实例.toString()`的结果是一样的
+- 而toString这个方法是构造函数原型的原型里面的函数，弱项修改打印的输出值，可以在构造函数中主动创建一个toString函数
+
+```
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+Person.prototype.toString = function() {
+    return "[name = " + this.name + ", age = " + this.age + "]"
+}
+
+var obj = new Person('david', 22);
+console.log(obj);               // Person {name: "david", age: 22}
+console.log(obj.toString());    // [name = david, age = 22]
+```
+<img width="433" alt="截屏2020-02-03下午9 08 55" src="https://user-images.githubusercontent.com/26485327/73655627-654ae780-46c9-11ea-9692-f6ad2b050b18.png">
+- 由于是chrome，所以直接打印obj和obj.toString不一样，是因为chrome做了优化
+
+
+# 4. 辣鸡回收Garbage Collection
+
+<img width="761" src="https://user-images.githubusercontent.com/26485327/73656778-cc699b80-46cb-11ea-8562-f2ab16cfe525.png">
+
+- 当一个对象，没有被任何变量或是属性引用时，此时，将永远无法操作此对象，即为垃圾。占用大量内存空间
+
+- js有自动垃圾回收机制，解析器（浏览器）会自动将没有用的程序代码清理掉，而无需手动删除
+- 需要手动操作的是，将没用的对象设置为null，浏览器就会自动进行辣鸡清理
+
+
 
 
 
