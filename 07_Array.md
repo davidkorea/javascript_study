@@ -53,17 +53,59 @@ Array是一个内建对象，是ES标准中实现的。
     <img width="320" src="https://user-images.githubusercontent.com/26485327/73660517-4c473400-46d3-11ea-8093-494a411cb7c6.png">
 
 
+# 数组的常用方法
+#### push（）
+数组的最后添加一个或多个元素，并返回数组的新的长度
+
+#### pop（）
+删除数组最后一个元素，并返回被删除的元素
+
+#### unshift（）
+数组的开头添加一个或多个元素，并返回数组的新的长度
+
+#### shift（）
+删除数组的第一个元素，并返回被删除的元素
 
 
+# 遍历数组
+```javascript
+for (i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+```
 
+创建几个Person对象，放到一个数组，再将这个数组中对象年龄大于20的找出来，放到一个新的数组中
+```javascript
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
 
+Person.prototype.toString = function() {
+    return " {name = " + this.name + ", age = " + this.age + "}"
+}           // 必须要有定义这个方法，否则chrome的log里面可以被优化显示，而到网页中无法显示
 
+var per1 = new Person('david', 22);
+var per2 = new Person('korea', 19);
+var per3 = new Person('china', 23);
+var per4 = new Person('jinan', 26);
+var arr = [per1, per2, per3, per4];
 
+function bigger20(arr) {
+    var newArr = [];
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i].age > 20) {
+            newArr.push(arr[i]);
+        }
+    }
+    return newArr
+}
 
-
-
-
-
+var res = bigger20(arr);
+document.write(res);
+```
+<img width="379" alt="截屏2020-02-03下午11 44 38" src="https://user-images.githubusercontent.com/26485327/73667380-258efa80-46df-11ea-8adc-958f3a83f893.png">
+<img width="604" alt="截屏2020-02-03下午11 44 11" src="https://user-images.githubusercontent.com/26485327/73667343-16a84800-46df-11ea-9c9a-01fcf9fc4b29.png">
 
 
 
