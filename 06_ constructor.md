@@ -8,7 +8,7 @@
     3. 构造函数形式调用，this代指自动新创建的对象实例
 
 -----
-## 1. 工厂方法批量创建对象
+# 1. 工厂方法批量创建对象
 
 ```javascript
 function person(name, age) {
@@ -42,7 +42,7 @@ console.log(obj2);
 - 虽然两个函数一个是person，一个是dog，但是二者的proto都是Object，不好区分
 - 那如果我想让他们不显示Object，而是显示自定义的person或是dog呢？
 
-## 2. 构造函数批量创建对象
+# 2. 构造函数批量创建对象
 使用构造函数，类似于python的class
 - 创建一个构造函数，和创建一个普通函数并没有什么不同
 - 构造函数调用时需要使用关键字new,因为new可以实现，在调用函数时，立即创建一个对象
@@ -104,7 +104,7 @@ console.log(dog1);
 
 - `this.name = name; `，表示把传入的name值，赋值给新建的那个对象的name属性
 
-### 改进1
+### 改进
 可以看到上面用于创建对象的构造函数中，写以一个方法函数。因此没调用一次构建函数来创建一个新的对象，都要创建一个新的方法函数。而函数的功能是完全一样的，这样就会在堆内存中开辟很多个同样功能的函数。可以将该方法函数，放在全局作用域中，来让构造函数中的方法去调用，来实现同样功能的函数只创建一次，来节省内存
 ```javascript
 function Person(name, age) {
@@ -124,7 +124,7 @@ function methodfun() {
 
 
 
-## 3. 原型对象prototype
+# 3. 原型对象prototype
 - 我们创建的任何一个函数，解析器（浏览器）都会向函数中添加一个隐藏属性，该隐藏属性对应着一个对象，即为原型对象prototype
 - 当函数作为普通函数时，调用prototype没有任何作用
 - 当函数作为构造函数时，通过该构造函数创建的所有对象，都会包含一个隐含属性，也即为构造函数的原型对象属性prototype
@@ -168,5 +168,30 @@ obj1.method();
 <img width="453" alt="截屏2020-02-03下午5 07 17" src="https://user-images.githubusercontent.com/26485327/73639580-a4684100-46a7-11ea-89d9-8612a9ba7540.png">
 
 - 图片中可以看到，obj1对象中并没有方法函数，但下面依然可以调用成功，就是在原型对象中找到的
+
+## 原型对象的原型
+
+```javascript
+function MyClass() {
+
+}
+
+MyClass.prototype.a = 123;
+
+var mc = new MyClass();
+console.log(mc);
+
+console.log('a' in mc);                                                 // true
+console.log(mc.hasOwnProperty('a'));                                    // false
+console.log(mc.hasOwnProperty('hasOwnProperty'));                       // flase
+console.log(mc.__proto__.hasOwnProperty('hasOwnProperty'));             // flase
+console.log(mc.__proto__.__proto__.hasOwnProperty('hasOwnProperty'));   // true
+```
+<img width="534" alt="截屏2020-02-03下午5 43 55" src="https://user-images.githubusercontent.com/26485327/73642506-c2847000-46ac-11ea-91ea-2e7c354342dd.png">
+
+
+
+
+
 
 
