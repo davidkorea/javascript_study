@@ -8,8 +8,7 @@
     3. 构造函数形式调用，this代指自动新创建的对象实例
 
 -----
-
-> scenario：批量创建对象
+## 工厂方法批量创建对象
 
 ```javascript
 function person(name, age) {
@@ -41,9 +40,10 @@ console.log(obj2);
 <img width="476" alt="截屏2020-02-03下午2 46 14" src="https://user-images.githubusercontent.com/26485327/73631446-f3a47680-4693-11ea-85e0-66c4b767f104.png">
 
 - 虽然两个函数一个是person，一个是dog，但是二者的proto都是Object，不好区分
-- 那如果我想让他们不显示Object，二十显示自定义的person或是dog呢？
+- 那如果我想让他们不显示Object，而是显示自定义的person或是dog呢？
 
-使用构造函数即可，类似于python的class
+## 构造函数批量创建对象
+使用构造函数，类似于python的class
 - 创建一个构造函数，和创建一个普通函数并没有什么不同
 - 构造函数调用时需要使用关键字new,因为new可以实现，在调用函数时，立即创建一个对象
 - 构造函数创建事，函数名首字母默认大写
