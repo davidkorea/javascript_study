@@ -189,7 +189,14 @@ console.log(mc.__proto__.__proto__.hasOwnProperty('hasOwnProperty'));   // true
 ```
 <img width="534" alt="截屏2020-02-03下午5 43 55" src="https://user-images.githubusercontent.com/26485327/73642506-c2847000-46ac-11ea-91ea-2e7c354342dd.png">
 
+- `对象属性 in 对象`，可以判断一个对象是否含有一个属性或者方法函数，但是此处可以看到，a属性并没有在对象中定义，依然返回true，就是从原型对象中找到了a这个属性
+- `对象.hasOwnProperty('属性')`，仅判断一个属性是否存在于对象中，不出查找原型对象
+- 那么从上面看得出来`hasOwnProperty`本身，又是哪里来的？反正我没有去定义这个一个方法函数，因此我们去对象的原型中找找
+- `对象.__proto__.hasOwnProperty('hasOwnProperty')`，对象的原型中，依然没有找到hasOwnProperty这个方法函数，接下来去对象原型的原型中去找找
+- `对象.__proto__.__proto__.hasOwnProperty('hasOwnProperty')`，诶！找到了
+- 原型还有其自己的原型，再往下就到头了，没有原型了
 
+<img width="506" alt="截屏2020-02-03下午6 01 38" src="https://user-images.githubusercontent.com/26485327/73643857-3b84c700-46af-11ea-90de-3530d5815add.png">
 
 
 
