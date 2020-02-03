@@ -354,7 +354,7 @@ obj2.method();
 <img width="273" alt="截屏2020-02-02下午9 50 07" src="https://user-images.githubusercontent.com/26485327/73609168-fc4e6b80-4605-11ea-8e35-bfe1340624f4.png">
 
 再如，批量创建对象
-```json
+```javascript
 var obj1 = {
     name: 'david,
     age: 18,
