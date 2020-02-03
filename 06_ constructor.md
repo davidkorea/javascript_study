@@ -106,7 +106,7 @@ console.log(dog1);
 
 ### 改进1
 可以看到上面用于创建对象的构造函数中，写以一个方法函数。因此没调用一次构建函数来创建一个新的对象，都要创建一个新的方法函数。而函数的功能是完全一样的，这样就会在堆内存中开辟很多个同样功能的函数。可以将该方法函数，放在全局作用域中，来让构造函数中的方法去调用，来实现同样功能的函数只创建一次，来节省内存
-```
+```javascript
 function Person(name, age) {
     this.name = name;
     this.age = age;
@@ -130,14 +130,43 @@ function methodfun() {
 - 当函数作为构造函数时，通过该构造函数创建的所有对象，都会包含一个隐含属性，也即为构造函数的原型对象属性prototype
     - 在构造函数中，通过prototype来调用
     - 在构造函数创建的对象中，通过__proto__来调用
-
-<img width="513" alt="截屏2020-02-03下午4 36 54" src="https://user-images.githubusercontent.com/26485327/73637492-679a4b00-46a3-11ea-867a-6f90083a4c2f.png">
-
+- 原型对象就相当于一个公共空间，同一个构造函数创建的对象，都可以访问。因此可以将一组对象中共有的内容，放到原型对象中
 
 
+<img width="513" src="https://user-images.githubusercontent.com/26485327/73637492-679a4b00-46a3-11ea-867a-6f90083a4c2f.png">
+
+```javascript
+function MyClass() {
+
+}
+
+MyClass.prototype.a = 123;          // 函数也是一种对象，可以直接 对象名.属性 来添加
+console.log(MyClass.prototype);
+
+var mc = new MyClass();
+console.log(mc.__proto__);
+```
 
 
+在对象中调用一个属性或者方法时，首先在对象内部寻找，有则直接调用，没有则去原型对象中查找
 
+```javascript
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    // this.method = methodfun;
+}
 
+Person.prototype.method = function() {
+    console.log('hello!!', this.name);
+}
+
+var obj1 = new Person('david', 18);
+console.log(obj1);
+obj1.method();
+```
+<img width="453" alt="截屏2020-02-03下午5 07 17" src="https://user-images.githubusercontent.com/26485327/73639580-a4684100-46a7-11ea-89d9-8612a9ba7540.png">
+
+- 图片中可以看到，obj1对象中并没有方法函数，但下面依然可以调用成功，就是在原型对象中找到的
 
 
