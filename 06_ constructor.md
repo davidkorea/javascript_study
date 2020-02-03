@@ -1,4 +1,15 @@
-# 构造函数（~类）
+# 构造函数，用于创建对象的函数
+
+- 构造函数，就是用于创建对象Object的函数
+- 一个函数前面使用new关键字，那么该函数就是构造函数，反之不使用new，那么该函数就是普通函数
+- this
+    1. 以函数形式调用，this代指window
+    2. 以对象的方法调用，this代指该对象，谁调用指代谁
+    3. 构造函数形式调用，this代指自动新创建的对象实例
+
+-----
+
+> scenario：批量创建对象
 
 ```javascript
 function person(name, age) {
@@ -45,7 +56,7 @@ console.log(obj);
 ```
 <img width="359" alt="截屏2020-02-03下午2 54 25" src="https://user-images.githubusercontent.com/26485327/73631829-13886a00-4695-11ea-8f31-f02bea7dcd8b.png">
 
-1. new关键字会自动在堆内存中开辟一块空间，换句话说就是自动创建一个对象
+1. new关键字会自动在堆内存中开辟一块空间，换句话说就是自动创建一个对象，由解析器（浏览器）实现
     - `var obj = new Person();`，obj就是自动被创建的对象
 2. 将自动创建的对象设置为函数的this，也就是说，在构造函数中可以通过this来引用新创建的对象
     - `alert(this);`，其中this代指上面自动创建的obj对象
@@ -68,19 +79,28 @@ function Dog(name, age) {
         alert('wolf wolf', this.name)
     }
 }
-var obj1 = new Person('david', 18);
+var obj1 = new Person('david', 18);     // obj1叫做构造函数Person()的实例
 console.log(obj1);
 
-var dog1 = new Dog('korea', 3);
+var dog1 = new Dog('korea', 3);         // dog1叫做构造函数Dog()的实例
 console.log(dog1);
 ```
 <img width="513" alt="截屏2020-02-03下午3 07 13" src="https://user-images.githubusercontent.com/26485327/73632510-dde48080-4696-11ea-9a23-1eec05d0a7af.png">
 
-- 与最开始相比，普通函数中需要自行定义一个对象，并且在手动设定函数返回此对象
+- 与最开始相比，普通函数中需要自行定义一个对象`var obj = new Object()`，并且在手动设定函数返回此对象`return obj`
+    ```javascript
+    function dog(name) {
+        var obj = new Object();     
+        obj.name = name;
+        return obj;
+    }
+    ```
 - 使用构造函数，由于默认自动创建一个对象，所以函数内部无需手动创建一个对象以及手动返回一个对象
 - 图中可以看出，虽然proto都是Object，但是构造函数显示对象的前面，显示了构造函数名Person和Dog
-
-
+- **使用同一个构造函数创建的对象，叫做一类对象，也可以将一个构造函数称作类**
+- 通过一个构造函数创建的对象，称作该构造函数的实例，也称作该类的实例。使用`instanceof`函数来判断**一个对象是否为一个构造函数的实例**
+    - `console.log(obj1 instanceof Person);     // true`    
+    - `console.log(obj1 instanceof Object);     // true`，所有对象都是Objec的后代
 
 
 
