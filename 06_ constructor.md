@@ -8,7 +8,7 @@
     3. 构造函数形式调用，this代指自动新创建的对象实例
 
 -----
-## 工厂方法批量创建对象
+## 1. 工厂方法批量创建对象
 
 ```javascript
 function person(name, age) {
@@ -42,7 +42,7 @@ console.log(obj2);
 - 虽然两个函数一个是person，一个是dog，但是二者的proto都是Object，不好区分
 - 那如果我想让他们不显示Object，而是显示自定义的person或是dog呢？
 
-## 构造函数批量创建对象
+## 2. 构造函数批量创建对象
 使用构造函数，类似于python的class
 - 创建一个构造函数，和创建一个普通函数并没有什么不同
 - 构造函数调用时需要使用关键字new,因为new可以实现，在调用函数时，立即创建一个对象
@@ -65,7 +65,7 @@ console.log(obj);
 
 ```javascript
 function Person(name, age) {
-    this.name = name;
+    this.name = name;                   // 表示把传入的name值，赋值给新建的那个对象的name属性
     this.age = age;
     this.method = function() {
         alert('hi,', this.name)
@@ -102,9 +102,21 @@ console.log(dog1);
     - `console.log(obj1 instanceof Person);     // true`    
     - `console.log(obj1 instanceof Object);     // true`，所有对象都是Objec的后代
 
+- `this.name = name; `，表示把传入的name值，赋值给新建的那个对象的name属性
 
+### 改进
+可以看到上面用于创建对象的构造函数中，写以一个方法函数。因此没调用一次构建函数来创建一个新的对象，都要创建一个新的方法函数。而函数的功能是完全一样的，这样就会在堆内存中开辟很多个同样功能的函数。可以将该方法函数，放在全局作用域中，来让构造函数中的方法去调用，来实现同样功能的函数只创建一次，来节省内存
+```
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.method = methodfun
+}
 
-
+function methodfun() {
+    alert('hi,', this.name)
+}
+```
 
 
 
