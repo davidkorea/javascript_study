@@ -41,3 +41,32 @@ Array是一个内建对象，是ES标准中实现的。
     console.log(arr.length);
     ```
     <img width="372"  src="https://user-images.githubusercontent.com/26485327/73659382-1bfe9600-46d1-11ea-8ddd-dd2dc9575ca1.png">
+
+- 创建一个数组
+  - `var arr = [1,2,3,4]`，更简单，更灵活
+  - `var arr = new Array(1, 2, 3);`
+  - 定义空数组长度，但是用的不多，虽然定义长度，使用时可以超过此长度
+    ```
+    arr1 = new Array(3);
+    console.log(arr1);
+    ```
+    <img width="320" src="https://user-images.githubusercontent.com/26485327/73660517-4c473400-46d3-11ea-8093-494a411cb7c6.png">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
