@@ -337,7 +337,8 @@ func.apply();
 
 - `函数();`，`函数call();`，`函数apply();`，三个都会执行函数
 
-### 2. 在调用一个函数的call和apply方法时，可以将一个对象指定为第一个参数，这个对象将成为函数执行时的this
+### 2. 在调用一个函数或者对象的call和apply方法时，可以将一个对象指定为第一个参数，这个对象将成为函数执行时的this
+- 函数的call，apply方法
 ```javascript
 function func() {
     // console.log('hello, func');
@@ -353,3 +354,60 @@ func.call(obj);
 func.apply(obj);
 ```
 <img width="631" alt="截屏2020-02-04下午3 54 12" src="https://user-images.githubusercontent.com/26485327/73724583-988f8400-4766-11ea-8f6c-ca09a099a7ab.png">
+
+- 对象的call，apply方法
+```javascript
+var obj1 = {
+    name: 'david',
+    method: function() {
+        console.log(this.name);
+    }
+};
+
+var obj2 = {
+    name: 'korea',
+}
+
+obj1.method.apply(obj2);    // korea
+```
+- 虽然是对象obj1的方法，但是apply加上参数obj2，那么obj1方法函数中的this就是obj2
+
+### 3. call
+```javascript
+function func(a, b) {
+    console.log('a: ', a);
+    console.log('b: ', b);
+
+}
+
+var obj1 = {
+    name: 'david',
+    method: function() {
+        console.log(this.name);
+    }
+};
+
+func.call(obj1);
+```
+<img width="269" alt="截屏2020-02-04下午4 15 24" src="https://user-images.githubusercontent.com/26485327/73726002-8ebb5000-4769-11ea-88d4-913053d71621.png">
+
+- func.call(abj1)，那么函数func中的this就是obj1，因为没有给函数func专递参数，所以打印出的参数是undefined
+- 但是传递给函数的实参，可以在call方法中第一个参数（对象）之后依次传递
+```javascript
+func.call(obj1, 2, 3);
+```
+<img width="246" alt="截屏2020-02-04下午4 18 14" src="https://user-images.githubusercontent.com/26485327/73726211-f40f4100-4769-11ea-9f4f-65a7488f94ce.png">
+
+### 4. apply
+- 和上面的call一样，意义传递实参，但是所有实参需要放在一个数组中传递
+```javascript
+func.apply(obj1, [2, 3]);
+```
+
+# this总结
+1. 以函数的形式调用时，this是window
+2. 以方法的形式调用时，this就是调用方法的这个对象，哪个对象调用，this就是那个对象
+3. 以构造函数的形式调用时，this就是新创建的那个对象
+4. 使用call和apply方法调用是，this就是指定传入的那个对象
+
+
