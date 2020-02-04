@@ -180,7 +180,7 @@ console.log(res);   // (7) [1, 11, 2, 22, 3, 4, 7]
 ```javascript
 arr = [1, 4, 7, 2, 3, 22, 11];
 
-arr.sort(function(a, b) {
+arr.sort(function(a, b) {     // 升序，从小到大
     if (a > b) {
         return 1;
     } else {
@@ -192,7 +192,14 @@ console.log(arr);
 <img width="309" alt="截屏2020-02-04下午3 24 06" src="https://user-images.githubusercontent.com/26485327/73722831-6419c900-4762-11ea-9a2e-a44fe3dad22c.png">
 
 
+- 改进排序
 
+```javascript
+arr.sort(function(a, b) {
+    // return a - b     //  升序
+    return b - a        //  降序
+});
+```
 
 
 
