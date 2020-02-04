@@ -410,4 +410,48 @@ func.apply(obj1, [2, 3]);
 3. 以构造函数的形式调用时，this就是新创建的那个对象
 4. 使用call和apply方法调用是，this就是指定传入的那个对象
 
+# 9. arguments
+函数中，封装实参的对象，类似数组，可以通过index索引
+
+```javascript
+function fun() {
+    console.log(arguments);
+    console.log(arguments.length);    // 长度就是实参的个数
+}
+
+fun();
+```
+<img width="481" alt="截屏2020-02-04下午5 22 25" src="https://user-images.githubusercontent.com/26485327/73731138-ec07cf00-4772-11ea-891b-3089b91c1f10.png">
+
+实参都是一一对应的保存在函数的arguments中，**即使函数没有定义形参，也可以使用实参**
+```javascript
+function fun() {
+    console.log(arguments);
+    console.log(arguments.length);
+    console.log(arguments[0]);
+}
+
+fun('hi', 123);
+```
+<img width="600" alt="截屏2020-02-04下午5 29 01" src="https://user-images.githubusercontent.com/26485327/73731668-d941ca00-4773-11ea-8732-fd097a39cd90.png">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
