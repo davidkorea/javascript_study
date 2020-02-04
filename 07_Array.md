@@ -108,7 +108,7 @@ document.write(res);
 <img width="379" alt="截屏2020-02-03下午11 44 38" src="https://user-images.githubusercontent.com/26485327/73667380-258efa80-46df-11ea-8adc-958f3a83f893.png">
 <img width="604" alt="截屏2020-02-03下午11 44 11" src="https://user-images.githubusercontent.com/26485327/73667343-16a84800-46df-11ea-9c9a-01fcf9fc4b29.png">
 
-### 数组forEach()方法遍历 - IE8不支持
+### 3.2 数组forEach()方法遍历 - IE8不支持
 - 数组的foreach方法需要一个函数作为参数
   - 这种函数有我们创建，但不由我们调用，由浏览器调用，称为回调函数
 
@@ -130,3 +130,39 @@ arr.forEach(function(value, index, obj) {
 })
 ```
 <img width="424" alt="截屏2020-02-04下午1 17 06" src="https://user-images.githubusercontent.com/26485327/73715972-a76b3c00-4750-11ea-8c2f-555dddf4da48.png">
+
+
+# 4. slice & splice
+### slice
+- 通过索引，从数组中提取出指定元素，不会改变原数组，将选取的元素封装到一个新数组
+- 索引`[start, end)`，包含开始索引，不包含结束索引
+  - 不指定结束索引，表示一直到数组左后一个元素
+  - 负数索引为末尾开始的索引
+
+### splice
+- 通过索引，将指定元素从原数组中删除，会改变原有数组，并向数组中添加一个或多个新元素
+- 被删除的元素会作为返回值返回
+- 索引`(开始索引，删除数量，新元素)`，注意第二个参数为从开始索引往后删除的元素的个数，而不是结束索引
+  - `arr.splice(1,0)`，表示从索引1开始删除0个元素，就是一个都不删
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
