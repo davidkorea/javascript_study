@@ -126,37 +126,6 @@ fun1()();   // hello fun2
 } )(1, 2)；   // 3
 ```
 
-# 5. 对象的方法
-- 对象的属性，是一个单一变量类型，str，num，bool
-- 对象的方法，是一个函数
-
-```javascript
-var obj = new Object();
-obj.name = 'plus';            // 对象的属性
-obj.sum = function(a, b) {    // 对象的方法
-    return a + b;
-};
-
-obj.sum(1, 2);    // 3
-
-// 枚举一个对象中的属性和方法
-for (var i in obj) {          
-    console.log('key: ', i, ' --- value: ', obj[i]);
-}
-// 取出对象属性的值的时候，因为i是变量，需要通过方括号[]来取出变量的值，而不能用点.的方式
-```
-```
-// return
-key:  name  --- value:  plus
-key:  sum  --- value:  ƒ (a, b) {
-            return a + b;
-        }
-```
-- console.log()就是调用console的log方法
-- 调用一个对象的方法，就是调用一个函数
-- 通过for...in...枚举一个对象中的属性和方法
-
-
 # 6. 作用域
 ## 6.1 全局作用域
 - 全局作用域的代码直接在页面<script>标签下，页面打开时创建，页面关闭时销毁
@@ -353,45 +322,34 @@ obj2.method();
 ```
 <img width="273" alt="截屏2020-02-02下午9 50 07" src="https://user-images.githubusercontent.com/26485327/73609168-fc4e6b80-4605-11ea-8e35-bfe1340624f4.png">
 
-再如，批量创建对象
+## 函数对象的方法call()和apply()
+### 1. 执行函数功能一样
 ```javascript
-var obj1 = {
-    name: 'david,
-    age: 18,
-    method: function() {
-        alert(this.name);
-    }
+function func() {
+    console.log('hello, func');
 }
 
-var obj2 = {
-    name: 'korea',
-    age: 18,
-    method: function() {
-        alert(this.name);
-    }
-}
-
-...
+func();
+func.call();
+func.apply();
 ```
+<img width="262" alt="截屏2020-02-04下午3 49 09" src="https://user-images.githubusercontent.com/26485327/73724258-e3f56280-4765-11ea-9216-9f20110dd444.png">
 
+- `函数();`，`函数call();`，`函数apply();`，三个都会执行函数
+
+### 2. 在调用一个函数的call和apply方法时，可以将一个对象指定为第一个参数，这个对象将成为函数执行时的this
 ```javascript
-function create(name, age) {
-    var obj = {
-        name: name,
-        age: age,
-        method: function() {
-            alert(this.name);
-        }
-    }
-    return obj;
+function func() {
+    // console.log('hello, func');
+    console.log(this);
 }
 
-var obj1 = create('david', 22);
-console.log(obj1);
-obj1.method();
+var obj = {
+    name: 'david',
+};
 
-var obj2 = create('korea', 18);
-console.log(obj2);
-obj2.method();
+func(obj);
+func.call(obj);
+func.apply(obj);
 ```
-<img width="415" alt="截屏2020-02-02下午10 17 10" src="https://user-images.githubusercontent.com/26485327/73609553-c4492780-4609-11ea-98fa-796cad6809bb.png">
+<img width="631" alt="截屏2020-02-04下午3 54 12" src="https://user-images.githubusercontent.com/26485327/73724583-988f8400-4766-11ea-8f6c-ca09a099a7ab.png">
