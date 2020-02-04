@@ -53,23 +53,24 @@ console.log(typeof a);      // string
 - 字符串在底层是以字符数组的形式保存
   `var str = 'hello';` -> `['h','e','l','l','o']`
 
-字符串的属性
+**字符串的属性**
 - 字符串有长度 str.length
 - 字符串可以被索引 str[2]
   
-字符串的方法
+
+**字符串的方法**
 - str.charAt(索引)，字符串中指定位置的字符，与使用中括号[]实现的功能相同
 - str.charCodeAt(索引)，对应指定字符的unicode
 - String.fromCharCode(字符编码)，将unicode编码转换为字符
   - `String.fromCharCode(0x2692)` -> ⚒
-- concat()，连接2个或多个字符串，和加号+的功能相同
-- indexOf(字符, 开始查找位置的索引)，检索字符串中是否包含该字符，有则返回对应第一次出现索引，没有找到则返回-1
+- str.concat()，连接2个或多个字符串，和加号+的功能相同
+- str.indexOf(字符, 开始查找位置的索引)，检索字符串中是否包含该字符，有则返回对应第一次出现索引，没有找到则返回-1
   - `str.indexOf('l')` -> 2，l在hello的第2索引第一次出现的位置
   - `(str.indexOf('l', 3)` -> 3，从字符串hello的第三个索引为止开始索引，那么l则可以呗检索到，返回对应索引3
 
-- lastIndexOf()，用法和indexOf一样，但是从后往前检索
-
-
+- str.lastIndexOf()，用法和indexOf一样，但是从后往前检索
+- str.slice(1,-1)，可以使用负数索引，倒数
+- str.substring(1，3)，和slice功能一致，但是不能接收负数索引，如果第二个参数小于第一个参数，会自动调整参数顺序
 
 
 
