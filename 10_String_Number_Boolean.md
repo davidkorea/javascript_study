@@ -67,13 +67,11 @@ console.log(typeof a);      // string
 - str.indexOf(字符, 开始查找位置的索引)，检索字符串中是否包含该字符，有则返回对应第一次出现索引，没有找到则返回-1
   - `str.indexOf('l')` -> 2，l在hello的第2索引第一次出现的位置
   - `(str.indexOf('l', 3)` -> 3，从字符串hello的第三个索引为止开始索引，那么l则可以呗检索到，返回对应索引3
-
 - str.lastIndexOf()，用法和indexOf一样，但是从后往前检索
 - str.slice(1,-1)，可以使用负数索引，倒数
 - str.substring(1，3)，和slice功能一致，但是不能接收负数索引，如果第二个参数小于第一个参数，会自动调整参数顺序
-
-
-
+- str.split('')，将字符串分割成字符，'hello' ->  ["h", "e", "l", "l", "o"]，也可以自定义拆分符
+- str.toUpperCase(), str.toLowerCase()
 
 
 
