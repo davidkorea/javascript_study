@@ -68,6 +68,7 @@ Array是一个内建对象，是ES标准中实现的。
 
 
 # 3. 遍历数组
+### 3.1 for循环遍历
 ```javascript
 for (i = 0; i < arr.length; i++) {
     console.log(arr[i]);
@@ -107,7 +108,7 @@ document.write(res);
 <img width="379" alt="截屏2020-02-03下午11 44 38" src="https://user-images.githubusercontent.com/26485327/73667380-258efa80-46df-11ea-8adc-958f3a83f893.png">
 <img width="604" alt="截屏2020-02-03下午11 44 11" src="https://user-images.githubusercontent.com/26485327/73667343-16a84800-46df-11ea-9c9a-01fcf9fc4b29.png">
 
-### forEach（）
+### 数组forEach()方法遍历 - IE8不支持
 - 数组的foreach方法需要一个函数作为参数
   - 这种函数有我们创建，但不由我们调用，由浏览器调用，称为回调函数
 
@@ -117,5 +118,15 @@ document.write(res);
     1. 数组的元素的值value
     2. 数组的元素的索引index
     3. 正在遍历的数组本身
+- 若考使用IE8，则不能使用该方法
+- 手机端开发可以大胆使用
 
-
+```javascript
+arr.forEach(function(value, index, obj) {
+    console.log('value: ', value);
+    console.log('index: ', index);
+    console.log('obj: ', obj);
+    console.log('\n');
+})
+```
+<img width="424" alt="截屏2020-02-04下午1 17 06" src="https://user-images.githubusercontent.com/26485327/73715972-a76b3c00-4750-11ea-8c2f-555dddf4da48.png">
