@@ -411,6 +411,11 @@ func.apply(obj1, [2, 3]);
 4. 使用call和apply方法调用是，this就是指定传入的那个对象
 
 # 9. arguments
+调用函数时，浏览器每次会传递两个隐藏参数
+1. 函数上下文对象this
+2. 封装实参的对象argumens
+
+
 函数中，封装实参的对象，类似数组，可以通过index索引
 
 ```javascript
@@ -425,7 +430,7 @@ fun();
 
 实参都是一一对应的保存在函数的arguments中，**即使函数没有定义形参，也可以使用实参**
 ```javascript
-function fun() {
+function fun() {                    // 函数即使没有定义形参，依然可以通过arguments来使用实参
     console.log(arguments);
     console.log(arguments.length);
     console.log(arguments[0]);
@@ -435,7 +440,15 @@ fun('hi', 123);
 ```
 <img width="600" alt="截屏2020-02-04下午5 29 01" src="https://user-images.githubusercontent.com/26485327/73731668-d941ca00-4773-11ea-8732-fd097a39cd90.png">
 
+arguments对象有一个方法callee，指向当前函数对象
+```javascript
+function fun() {
+    console.log(arguments.callee);
 
+}
+fun('hi', 123);
+```
+<img width="431" alt="截屏2020-02-04下午5 35 24" src="https://user-images.githubusercontent.com/26485327/73732196-bbc13000-4774-11ea-86e3-18491f295bb4.png">
 
 
 
