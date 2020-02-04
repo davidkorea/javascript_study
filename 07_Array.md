@@ -1,4 +1,4 @@
-# 数组 Array
+# 1. 数组Array Basics
 
 对象分为：内建对象，宿主对象，自定义对象。之前04，05，06都是讲解的自建对象，即创建一个自定义对象。
 
@@ -53,7 +53,7 @@ Array是一个内建对象，是ES标准中实现的。
     <img width="320" src="https://user-images.githubusercontent.com/26485327/73660517-4c473400-46d3-11ea-8093-494a411cb7c6.png">
 
 
-# 数组的常用方法
+# 2. 数组的常用方法
 #### push（）
 数组的最后添加一个或多个元素，并返回数组的新的长度
 
@@ -67,7 +67,7 @@ Array是一个内建对象，是ES标准中实现的。
 删除数组的第一个元素，并返回被删除的元素
 
 
-# 遍历数组
+# 3. 遍历数组
 ```javascript
 for (i = 0; i < arr.length; i++) {
     console.log(arr[i]);
@@ -107,8 +107,15 @@ document.write(res);
 <img width="379" alt="截屏2020-02-03下午11 44 38" src="https://user-images.githubusercontent.com/26485327/73667380-258efa80-46df-11ea-8adc-958f3a83f893.png">
 <img width="604" alt="截屏2020-02-03下午11 44 11" src="https://user-images.githubusercontent.com/26485327/73667343-16a84800-46df-11ea-9c9a-01fcf9fc4b29.png">
 
+### forEach（）
+- 数组的foreach方法需要一个函数作为参数
+  - 这种函数有我们创建，但不由我们调用，由浏览器调用，称为回调函数
 
-
-
+- 数组中有几个元素，该回调函数就会被执行几次，没执行一次，浏览器就会遍历到数组中的一个元素
+  - 浏览器遍历到的元素将以实参的形式传递给回调函数，我们可以通过形参来读取这些内容
+- 浏览器会在回调函数中传递三个参数
+    1. 数组的元素的值value
+    2. 数组的元素的索引index
+    3. 正在遍历的数组本身
 
 
