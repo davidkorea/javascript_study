@@ -163,8 +163,33 @@ arr.forEach(function(value, index, obj) {
 # 8. sort（）
 - 按照unicode编码排序
 - 会影响原数组
+- 当排序数字的时候，默认会出现问题
+```javascript
+arr = [1, 4, 7, 2, 3, 22, 11];
+arr.sort();
+console.log(res);   // (7) [1, 11, 2, 22, 3, 4, 7]
+```
+- 准确按照数字大小排序，需要在sort函数中添加一个回调函数，来自行指定排序规则
+  - 回调函数中定义两个形参
+  - 浏览器会分别依次使用数组中的元素，作为实参，去调用回调函数
+  - 浏览器根据回调函数的返回值决定元素顺序
+    - 返回大于0的值，则交换元素为止
+    - 返回值小于0，则不交换元素位置
+    - 返回0，认为元素相等，也不交换元素位置
+    
+```javascript
+arr = [1, 4, 7, 2, 3, 22, 11];
 
-
+arr.sort(function(a, b) {
+    if (a > b) {
+        return 1;
+    } else {
+        return -1;
+    }
+});
+console.log(arr);
+```
+<img width="309" alt="截屏2020-02-04下午3 24 06" src="https://user-images.githubusercontent.com/26485327/73722831-6419c900-4762-11ea-9a2e-a44fe3dad22c.png">
 
 
 
