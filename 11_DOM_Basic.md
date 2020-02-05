@@ -156,7 +156,6 @@ js可以通过DOM文档对象模型来操作html页面
                 if (imgidx < imglist.length - 1) {
                     imgidx++;
                     imgtag[0].src = imglist[imgidx];
-                    console.log(imglist[imgidx]);
                     info.innerHTML = (imgidx + 1) + ' of ' + imglist.length + ' pics.';
 
                 } else {
@@ -170,7 +169,7 @@ js可以通过DOM文档对象模型来操作html页面
 <body>
     <div id="outer">
         <p id="info"></p>
-        <img src="2.png" width="500px">
+        <img src="2.png" width="500px" height="300px">
         <button id="prev">prev</button>
         <button id="next">next</button>
     </div>
@@ -178,6 +177,49 @@ js可以通过DOM文档对象模型来操作html页面
 
 </html>
 ```
+
+优化代码
+```javascript
+window.onload = function() {
+    var imglist = ['1.png', '2.png', '3.png', '4.png'];
+    var imgtag = document.getElementsByTagName('img')[0];
+    var prevBtn = document.getElementById('prev');
+    var nextBtn = document.getElementById('next');
+    var imgidx = imglist.indexOf(imgtag.src.split('/')[6]);   // ["file:", "", "", "Users", "yong", "Desktop", "2.png"]
+    var info = document.getElementById('info');
+    info.innerHTML = (imgidx + 1) + ' of ' + imglist.length + ' pics.';
+
+    prevBtn.onclick = function() {
+        imgidx--;
+        if (imgidx < 0) {
+            imgidx = 0;
+        }
+        imgtag.src = imglist[imgidx];
+        info.innerHTML = (imgidx + 1) + ' of ' + imglist.length + ' pics.';
+    };
+
+    nextBtn.onclick = function() {
+        imgidx++;
+        if (imgidx > imglist.length - 1) {
+            imgidx = imglist.length - 1
+        }
+        imgtag.src = imglist[imgidx];
+        info.innerHTML = (imgidx + 1) + ' of ' + imglist.length + ' pics.';
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
