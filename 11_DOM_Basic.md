@@ -107,7 +107,77 @@ js可以通过DOM文档对象模型来操作html页面
   - 可以读取标签的属性，直接.属性 `.name`，`.value` 即可，唯独特殊的是class不能这样来读取
   - `<input class='hello' name='gender' type='radio' value='male'/>`，需要通过`.className`来获取标签的class属性，因为class是js的关键字，不能直接使用
 
+# 3. 练习：切换图片
+```javascript
+<html>
 
+<head>
+    <style>
+        *. {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #outer {
+            width: 500px;
+            margin: 50px auto;
+            padding: 10px;
+            background-color: bisque;
+            text-align: center;
+        }
+        
+        #inner {
+            width: 500px;
+        }
+    </style>
+
+    <script>
+        window.onload = function() {
+
+            var imglist = ['1.png', '2.png', '3.png', '4.png'];
+            var imgtag = document.getElementsByTagName('img');
+            var prevBtn = document.getElementById('prev');
+            var nextBtn = document.getElementById('next');
+            var imgidx = imglist.indexOf(imgtag[0].src.split('/')[6]);
+            var info = document.getElementById('info');
+            info.innerHTML = (imgidx + 1) + ' of ' + imglist.length + ' pics.';
+
+            prevBtn.onclick = function() {
+                if (imgidx > 0) {
+                    imgidx--;
+                    imgtag[0].src = imglist[imgidx];
+                    info.innerHTML = (imgidx + 1) + ' of ' + imglist.length + ' pics.';
+                } else {
+                    imgtag[0].src = '1.png';
+                }
+            };
+
+            nextBtn.onclick = function() {
+                if (imgidx < imglist.length - 1) {
+                    imgidx++;
+                    imgtag[0].src = imglist[imgidx];
+                    console.log(imglist[imgidx]);
+                    info.innerHTML = (imgidx + 1) + ' of ' + imglist.length + ' pics.';
+
+                } else {
+                    imgtag[0].src = imglist[imglist.length - 1];
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="outer">
+        <p id="info"></p>
+        <img src="2.png" width="500px">
+        <button id="prev">prev</button>
+        <button id="next">next</button>
+    </div>
+</body>
+
+</html>
+```
 
 
 
