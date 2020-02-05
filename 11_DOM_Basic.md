@@ -259,7 +259,7 @@ console.log((outer.lastChild));       // #text
 <img width="526" src="https://user-images.githubusercontent.com/26485327/73834748-3f4b5180-4847-11ea-8442-e7b3c7befff0.png">
 
 
-# 父节点和兄弟节点
+# 4. 父节点和兄弟节点
 
 - parentNode，父节点
 - previousElementSibling，前一个兄弟节点元素
