@@ -105,7 +105,7 @@ js可以通过DOM文档对象模型来操作html页面
   - 返回一个数组
   - 对于自结束标签`<input name='gender' type='text' value='male'/>`，不能使用innerHTML，获取不到内容
   - 可以读取标签的属性，直接.属性 `.name`，`.value` 即可，唯独特殊的是class不能这样来读取
-  - `<input class='hello' name='gender' type='radio' value='male'/>`，需要通过`.classname`来获取标签的class属性，因为class是js的关键字，不能直接使用
+  - `<input class='hello' name='gender' type='radio' value='male'/>`，需要通过`.className`来获取标签的class属性，因为class是js的关键字，不能直接使用
 
 
 
