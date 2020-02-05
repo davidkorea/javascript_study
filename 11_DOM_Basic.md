@@ -244,7 +244,7 @@ console.log(outer.children);
 var outer = document.getElementById('outer');
 console.log((outer.firstChild));      // #text
 ```
-- 获取第一个子元素 `console.log(outer.firstElementChild);`
+- 获取第一个子元素 `console.log(outer.firstElementChild);`，IE8及一下不支持
 <img width="527" src="https://user-images.githubusercontent.com/26485327/73834732-35295300-4847-11ea-98f9-e2291938456b.png">
 
 
@@ -254,7 +254,7 @@ console.log((outer.firstChild));      // #text
 var outer = document.getElementById('outer');
 console.log((outer.lastChild));       // #text
 ```   
-- 获取最后一个子元素 `console.log(outer.lastElementChild);`
+- 获取最后一个子元素 `console.log(outer.lastElementChild);`，IE8及一下不支持
 <img width="526" src="https://user-images.githubusercontent.com/26485327/73834748-3f4b5180-4847-11ea-8442-e7b3c7befff0.png">
 
 
