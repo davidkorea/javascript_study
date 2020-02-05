@@ -100,7 +100,8 @@ js可以通过DOM文档对象模型来操作html页面
 - document.getElementById('btn')，通过元素id，获得一个元素
 - document.getElementsByTagName('div')，通过元素标签名，获得一组元素，div，span
   - 返回一个数组，可以使用length查看数组长度
-  - 可以通过innerHTML获取标签内部的内容
+  - **可以通过innerHTML获取标签内部的HTML内容，父元素标签内部的子元素标签都是html代码，可以返回**，返回标签
+  - **innerText可以获取标签内部的文本内容，父元素标签里面嵌套的子元素标签中的仅本文**，不返回标签
 - document.getElementsByName，通过元素名称，获得一组元素，表单和按钮一般由名称属性
   - 返回一个数组
   - 对于自结束标签`<input name='gender' type='text' value='male'/>`，不能使用innerHTML，获取不到内容
@@ -258,9 +259,29 @@ console.log((outer.lastChild));       // #text
 <img width="526" src="https://user-images.githubusercontent.com/26485327/73834748-3f4b5180-4847-11ea-8442-e7b3c7befff0.png">
 
 
+# 父节点和兄弟节点
 
+- parentNode，父节点
+- previousElementSibling，前一个兄弟节点元素
+- previousSibling，前一个兄弟节点，可能为空白本文对点
+- nextElementSibling，下一个兄弟节点元素
+- nextSibling，下一个兄弟节点，可能为空白本文对点
 
+```JavaScript
+function myclick(id, func) {
+    var element = document.getElementById(id);
+    element.onclick = func;
+}
 
+myclick('click', function() {
+    var info = document.getElementById('info');
+    alert(info.parentElement.innerText);
+    alert(info.previousElementSibling);
+    alert(info.previousSibling);
+    alert(info.nextElementSibling);
+    alert(info.nextSibling);
+});
+```
+点击click按钮，显示元素id为info的父元素，兄弟元素
 
-
-
+<img width="490" src="https://user-images.githubusercontent.com/26485327/73848924-fe156a80-4863-11ea-989d-ec1556c4cbac.png">
