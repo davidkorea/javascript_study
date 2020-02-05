@@ -80,7 +80,7 @@ js可以通过DOM文档对象模型来操作html页面
 ```javascript
 <head>
     <script>
-        window, onload = function() {
+        window.onload = function() {
             var btn = document.getElementById('btn');
             btn.onclick = function() {
                 console.log('hi');
@@ -278,10 +278,30 @@ myclick('click', function() {
     alert(info.parentElement.innerText);
     alert(info.previousElementSibling);
     alert(info.previousSibling);
-    alert(info.nextElementSibling);
+    alert(info.nextElementSibling.src);   // 自结束标签，不能用innerHtml和innerText，可以查看标签内属性
     alert(info.nextSibling);
 });
 ```
 点击click按钮，显示元素id为info的父元素，兄弟元素
 
-<img width="490" src="https://user-images.githubusercontent.com/26485327/73848924-fe156a80-4863-11ea-989d-ec1556c4cbac.png">
+<img width="521" src="https://user-images.githubusercontent.com/26485327/73849550-189c1380-4865-11ea-9a34-5e6f56b02040.png">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
