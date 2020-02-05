@@ -4,7 +4,10 @@
 
 前面说到的都是自定义对象以及ES自建对象，DOM是浏览器提供的**宿主对象**
 
-### 1. **DOM，js可以通过DOM文档对象模型来操作html页面**
+# 1. Basics
+
+### 1.DOM
+js可以通过DOM文档对象模型来操作html页面
 - 文档： html网页
 - 对象： 网页的每个部分都转换成了对象，包括标签，文本等
 - 模型： 表示对象与对象之间的关系，比如一个超链接标签是属于 html.boday.div.a，如下图
@@ -12,7 +15,7 @@
 
 
 
-###2. **节点Node**
+### 2. 节点 Node
 - 构成网页的最基本的部分，网页中的每一个部分都可以称作节点。就如同网络中的每个pc，每个路由器等网络设备都可以称作节点
 - btml标签，属性，文本，注释，整个文档本身，都是一个节点，但是分别属于不同的节点类型
   - 元素节点 Element
@@ -93,10 +96,16 @@
 <img width="506" alt="截屏2020-02-05下午2 09 52" src="https://user-images.githubusercontent.com/26485327/73815518-3051a880-4821-11ea-9035-fef5e5bdfe6a.png">
 
 
-
-
-
-
+# 2. 元素节点对象
+- document.getElementById('btn')，通过元素id，获得一个元素
+- document.getElementsByTagName('div')，通过元素标签名，获得一组元素，div，span
+  - 返回一个数组，可以使用length查看数组长度
+  - 可以通过innerHTML获取标签内部的内容
+- document.getElementsByName，通过元素名称，获得一组元素，表单和按钮一般由名称属性
+  - 返回一个数组
+  - 对于自结束标签`<input name='gender' type='text' value='male'/>`，不能使用innerHTML，获取不到内容
+  - 可以读取标签的属性，直接.属性 `.name`，`.value` 即可，唯独特殊的是class不能这样来读取
+  - `<input class='hello' name='gender' type='radio' value='male'/>`，需要通过`.classname`来获取标签的class属性，因为class是js的关键字，不能直接使用
 
 
 
