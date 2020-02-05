@@ -223,29 +223,39 @@ var outer = document.getElementById('outer');
 console.log(outer.getElementsByTagName('img'));   //   var outer = document.getElementById('outer');
 ```
 ### 2. 属性
-- `元素节点.childNodes`，当前节点的所有子节点
+#### 1. `元素节点.childNodes`，当前元素的所有子节点，注意节点，不是元素
 ```javascript
 var outer = document.getElementById('outer');
-console.log((outer.childNodes));
+console.log(outer.childNodes);
 ```
-```
-// NodeList(9) [text, p#info, text, img, text, button#prev, text, button#next, text]
-```
+<img width="649" alt="截屏2020-02-05下午6 26 54" src="https://user-images.githubusercontent.com/26485327/73833545-1924b200-4845-11ea-9c44-ec8395976ee8.png">
 
-- `元素节点.firstChild`，当前节点的第一个子节点
+- 根据ES标准，**标签之间的空白也算是一个文本节点**，但是IE8及一下版本没有实现，空白部分不是文本节点
+- 要想获取全部的**子元素**，获取没有空行文本节点，只有子元素 children
+```javascript
+var outer = document.getElementById('outer');
+console.log(outer.children);
+```
+<img width="846" alt="截屏2020-02-05下午6 34 03" src="https://user-images.githubusercontent.com/26485327/73834118-1a0a1380-4846-11ea-8bec-432067c8da92.png">
+
+
+#### 2. `元素节点.firstChild`，当前节点的第一个子节点，包括空白文本节点
 ```javascript
 var outer = document.getElementById('outer');
 console.log((outer.firstChild));      // #text
 ```
+- 获取第一个子元素 `console.log(outer.firstElementChild);`
+<img width="527" src="https://user-images.githubusercontent.com/26485327/73834732-35295300-4847-11ea-98f9-e2291938456b.png">
 
 
-- `元素节点.lastChile`，当前节点的最后一个节点
+
+#### 3.  `元素节点.lastChile`，当前节点的最后一个节点
 ```javascript
 var outer = document.getElementById('outer');
 console.log((outer.lastChild));       // #text
 ```   
-
-
+- 获取最后一个子元素 `console.log(outer.lastElementChild);`
+<img width="526" src="https://user-images.githubusercontent.com/26485327/73834748-3f4b5180-4847-11ea-8442-e7b3c7befff0.png">
 
 
 
