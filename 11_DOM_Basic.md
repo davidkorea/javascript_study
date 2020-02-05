@@ -107,7 +107,7 @@ js可以通过DOM文档对象模型来操作html页面
   - 可以读取标签的属性，直接.属性 `.name`，`.value` 即可，唯独特殊的是class不能这样来读取
   - `<input class='hello' name='gender' type='radio' value='male'/>`，需要通过`.className`来获取标签的class属性，因为class是js的关键字，不能直接使用
 
-# 3. 练习：切换图片
+#### 练习：切换图片
 ```javascript
 <html>
 
@@ -212,8 +212,38 @@ window.onload = function() {
 ![](https://user-images.githubusercontent.com/26485327/73828071-9cd9a100-483b-11ea-8aa6-4e8d9a6beb89.gif)
 
 
+# 3. 元素节点的子节点
+
+上面元素节点对象都是document.开始的，元素的子节点实在当前元素对象的基础上，在实现方法和属性
+
+### 1. 方法
+- `元素节点.getElementsByTagName()`
+```javascript
+var outer = document.getElementById('outer');
+console.log(outer.getElementsByTagName('img'));   //   var outer = document.getElementById('outer');
+```
+### 2. 属性
+- `元素节点.childNodes`，当前节点的所有子节点
+```javascript
+var outer = document.getElementById('outer');
+console.log((outer.childNodes));
+```
+```
+// NodeList(9) [text, p#info, text, img, text, button#prev, text, button#next, text]
+```
+
+- `元素节点.firstChild`，当前节点的第一个子节点
+```javascript
+var outer = document.getElementById('outer');
+console.log((outer.firstChild));      // #text
+```
 
 
+- `元素节点.lastChile`，当前节点的最后一个节点
+```javascript
+var outer = document.getElementById('outer');
+console.log((outer.lastChild));       // #text
+```   
 
 
 
