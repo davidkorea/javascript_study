@@ -43,6 +43,7 @@ console.log(div);
         
 
 ```html
+<script>
 window.onload = function(){
     function clickBtn(id, func) {
         var btn = document.getElementById(id);
@@ -58,7 +59,7 @@ window.onload = function(){
         div_add.appendChild(new_input);
     });
 }
-
+</script>
 
 <div id="add">
     <button id="addbtn">Add element</button>
