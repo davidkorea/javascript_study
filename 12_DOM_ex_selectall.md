@@ -1,8 +1,11 @@
 
+每一个事件（每个按钮/选框点击事件）要单独写一个函数，不能放在一个for循环里面
+
 1. 全选
 2. 全不选
 3. 反选
 4. 提交
+5，状态显示checkbox
 
 ![Feb-06-2020 12-03-17](https://user-images.githubusercontent.com/26485327/73904976-be3c9a80-48d8-11ea-9241-7da68018ebe8.gif)
 
