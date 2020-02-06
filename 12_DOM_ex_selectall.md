@@ -82,3 +82,24 @@
 </body>
 </html>
 ```
+
+代码优化 
+```javascript
+// reverse
+clickBtn('reverse', function() {
+    var allBox = document.getElementsByName('items');
+    for (i = 0; i < allBox.length; i++) {
+        // if (allBox[i].checked) {
+        //     allBox[i].checked = false;
+        // } else {
+        //     allBox[i].checked = true;
+        // }
+        
+        allBox[i].checked = !allBox[i].checked     
+    }
+});
+```
+- 直接取反，而无需通过if判断当前值
+
+
+
