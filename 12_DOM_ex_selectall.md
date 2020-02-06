@@ -8,6 +8,12 @@
 
 ```html
 <html>
+<style>
+    * {
+        margin: 10;
+        padding: 0;
+    }
+</style>
 <head>
     <script>
         window.onload = function() {
