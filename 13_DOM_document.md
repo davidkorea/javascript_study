@@ -36,10 +36,12 @@ console.log(div);
 
 # DOM 增删改
 
+### 1. 子节点-父节点
 点击按钮后，在页面添加一个选项。在<div id="checkbox">在添加一个checkbox input
-- 创建一个标签元素`document.createElement('div');`
-- 创建一个文本元素`document.createTextNode('add new text');`
-- 将文本元素添加为标签元素的子元素`父节点.appendChild(new_text);`
+        
+1. 创建一个标签元素`document.createElement('div');`
+2. 创建一个文本元素`document.createTextNode('add new text');`
+3. 将文本元素添加为标签元素的子元素`父节点.appendChild(new_text);`
         
 
 ```html
@@ -47,7 +49,6 @@ console.log(div);
 window.onload = function(){
     function clickBtn(id, func) {
         var btn = document.getElementById(id);
-        // console.log(btn.value);
         btn.onclick = func;
     }；
     clickBtn('addbtn', function() {
@@ -69,15 +70,38 @@ window.onload = function(){
         - https://blog.csdn.net/sinat_27088253/article/details/51316760
 
 
+4. `父节点.insertBefore(新添加节点，旧节点)`，同一个父节点下，添加新节点到已有节点之前
 
+```html
+<script>
+window.onload = function(){
+    function clickBtn(id, func) {
+        var btn = document.getElementById(id);
+        btn.onclick = func;
+    }；
+    clickBtn('addbtn', function() {
+        var div_add = document.getElementById('add');
+        var add_btn = document.getElementById('addbtn');
 
+        var new_input = document.createElement('div');
+        var new_text = document.createTextNode('add new text');
 
+        new_input.appendChild(new_text);
+        div_add.insertBefore(new_input, add_btn);
+    });
+}
+</script>
 
+<div id="add">
+    <button id="addbtn">Add element</button>
+</div>
+```
 
+5. `父节点.replaceChild(新添加节点，被替换节点)`，替换子节点
 
+6. `父节点.removeChild(子节点)`，删除子节点
 
-
-
+7. `子节点.parentNode.removeChild()`，更常用。通过当前节点，获取其父节点，在通过父节点找到其下面的其他子节点。这样就不用单独去获取一个元素的父节点了
 
 
 
