@@ -117,9 +117,127 @@ clickBtn('reverse', function() {
    - select no -> 自动取消勾选checkbox
    - reverse -> 当且仅当所有选项被勾选时，自动勾选checkbox，否则不勾选
    
-   
-```javascript
 
+![Feb-06-2020 17-34-39](https://user-images.githubusercontent.com/26485327/73924211-15596400-4907-11ea-9f65-3f424278c55f.gif)
+
+
+```html
+<html>
+<head>
+    <style>
+        * {
+            margin: 10;
+            padding: 0;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var checkallbox = document.getElementById('checkall');
+            var allBox = document.getElementsByName('items');
+
+            // 1. Checkbox
+            // check and show status of all checkbox
+
+            checkallbox.onclick = function() {
+                for (i = 0; i < allBox.length; i++) {
+                    allBox[i].checked = this.checked;
+                    // you checked then all checked
+                    // you unchecked,then all unchecked
+                }
+            };
+
+            function chkboxclick(id) {
+                var chkbox = document.getElementById(id);
+                chkbox.onclick = function() {
+                    for (i = 0; i < allBox.length; i++) {
+                        checkallbox.checked = true;
+                        if (!allBox[i].checked) {
+                            checkallbox.checked = false;
+                            break;
+                        }
+                    }
+                };
+            };
+
+            list = ['run', 'swim', 'football', 'basketball'];
+            for (i = 0; i < list.length; i++) {
+                chkboxclick(list[i]);
+            };
+
+
+            // 2. Button
+            // click button function wrap up
+            function clickBtn(id, func) {
+                var btn = document.getElementById(id);
+                console.log(btn.value);
+                btn.onclick = func;
+            }
+
+            // slect all btn
+            clickBtn('selectall', function() {
+                for (i = 0; i < allBox.length; i++) {
+                    allBox[i].checked = true;
+                }
+                checkallbox.checked = true;
+            });
+            // select no
+            clickBtn('selectno', function() {
+                for (i = 0; i < allBox.length; i++) {
+                    allBox[i].checked = false;
+                }
+                checkallbox.checked = false;
+            });
+
+            // reverse
+            clickBtn('reverse', function() {
+                for (i = 0; i < allBox.length; i++) {
+                    allBox[i].checked = !allBox[i].checked;
+                };
+
+                for (i = 0; i < allBox.length; i++) {
+                    checkallbox.checked = true;
+                    if (!allBox[i].checked) {
+                        checkallbox.checked = false;
+                        break;
+                    }
+                };
+
+            });
+
+            // post
+            clickBtn('post', function() {
+                var postlist = [];
+                for (i = 0; i < allBox.length; i++) {
+                    if (allBox[i].checked) {
+                        postlist.push(allBox[i].value)
+                    };
+                }
+                if (postlist.length > 0) {
+                    alert('Posted.\n' + postlist);
+                } else {
+                    alert('please select.')
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <form method="POST">
+        Your favorate <input type="checkbox" id="checkall">Select all/no
+        <br>
+        <input type="checkbox" name="items" value="run" id="run">Run
+        <input type="checkbox" name="items" value="swim" id="swim">Swim
+        <input type="checkbox" name="items" value="football" id="football">Football
+        <input type="checkbox" name="items" value="basketball" id="basketball">Basketball
+        <br>
+        <input type="button" id="selectall" value="Select All">
+        <input type="button" id="selectno" value="Select No">
+        <input type="button" id="reverse" value="Reverse">
+        <input type="button" id="post" value="Post">
+    </form>
+</body>
+</html>
 ```
 
 
