@@ -1,11 +1,10 @@
 
-每一个事件（每个按钮/选框点击事件）要单独写一个函数，不能放在一个for循环里面
 
+## 1. 实现按钮功能
 1. 全选
 2. 全不选
 3. 反选
 4. 提交
-5，状态显示checkbox
 
 ![Feb-06-2020 12-03-17](https://user-images.githubusercontent.com/26485327/73904976-be3c9a80-48d8-11ea-9241-7da68018ebe8.gif)
 
@@ -103,6 +102,45 @@ clickBtn('reverse', function() {
 });
 ```
 - 直接取反，而无需通过if判断当前值
+
+
+
+## 2. 增加功能
+- 增加一个勾选按钮checkbox
+   - [x] 点选后，全选下面选项
+   - [] 取消勾选后，取消全选下面选项
+- 手动勾选下面选项
+   - 当全部勾选时，新增checkbox被自动勾选
+   - 未全部勾选是，新增checkbox不被勾选
+- 按钮
+   - select all -> 自动勾选checkbox
+   - select no -> 自动取消勾选checkbox
+   - reverse -> 当且仅当所有选项被勾选时，自动勾选checkbox，否则不勾选
+   
+   
+```javascript
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
