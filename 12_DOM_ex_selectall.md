@@ -138,17 +138,17 @@ clickBtn('reverse', function() {
          // 1. Checkbox
          // check and show status of all checkbox
 
-         checkallbox.onclick = function() {
+         checkallbox.onclick = function() {              // 当【全选】被勾选时，选项也全被勾选
              for (i = 0; i < allBox.length; i++) {
-                 allBox[i].checked = this.checked;       // 当【全选】被勾选时，选项全被勾选
-             }
+                 allBox[i].checked = this.checked;       // 作为checkallbox的方法onclick调用
+             }                                           // this代指checkallbox   
          };
 
          function chkboxclick(id) {                      // 每个选项勾选框的点击事件函数
              var chkbox = document.getElementById(id);   // 根据id获取勾选框对象
              chkbox.onclick = function() {
                  for (i = 0; i < allBox.length; i++) {   // 当一个勾选框被点击后，默认【全选】选框被勾选
-                     checkallbox.checked = true;         // 如果执行if，那么【全选】状态会被更改，不执行if则全选
+                     checkallbox.checked = true;         // 如果执行if，那么【全选】状态会被更改，否则全选
                      if (!allBox[i].checked) {           // 但，其他选项选框如果有一个没被勾选
                          checkallbox.checked = false;    // 则将【全选】选框取消勾选
                          break;
@@ -192,9 +192,9 @@ clickBtn('reverse', function() {
                  allBox[i].checked = !allBox[i].checked;  // 是的当前的选中状态和之前取反，不同
              };
 
-             for (i = 0; i < allBox.length; i++) {       // 选项选框变化后，【全选】选框也要响应
-                 checkallbox.checked = true;             // 和上面思路一样，默认【全选】开启
-                 if (!allBox[i].checked) {               // 有一个选项选框没被勾选，【全选】也不勾选
+             for (i = 0; i < allBox.length; i++) {        // 选项选框变化后，【全选】选框也要响应
+                 checkallbox.checked = true;              // 和上面思路一样，默认【全选】开启
+                 if (!allBox[i].checked) {                // 有一个选项选框没被勾选，【全选】也不勾选
                      checkallbox.checked = false;
                      break;
                  }
@@ -224,7 +224,7 @@ clickBtn('reverse', function() {
     <form method="POST">
         Your favorate <input type="checkbox" id="checkall">Select all/no
         <br>
-        <input type="checkbox" name="items" value="run" id="run">Run      // 为每个选框增加id属性
+        <input type="checkbox" name="items" value="run" id="run">Run       // 为每个选框增加id属性
         <input type="checkbox" name="items" value="swim" id="swim">Swim
         <input type="checkbox" name="items" value="football" id="football">Football
         <input type="checkbox" name="items" value="basketball" id="basketball">Basketball
