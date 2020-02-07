@@ -121,8 +121,67 @@ var btn2 = document.getElementById('btn2');
     - 应用场景就是，注册时，用户条款全部月丹完成后，就是滚动条拉倒底后，才能继续注册
 
 
+# 3. 练习：确认用户协议阅读完毕
+
+![Feb-07-2020 23-07-14](https://user-images.githubusercontent.com/26485327/74040418-a7906380-49fe-11ea-94a0-ce15e6a91346.gif)
 
 
+```html
+<html>
+<head>
+    <style>
+        * {
+            margin: 10px;
+        }
+        
+        #info {
+            width: 500px;
+            height: 300px;
+            background-color: rgb(218, 240, 248);
+            overflow: auto;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            // get element
+            var div = document.getElementById('info');
+            var inputItems = document.getElementsByTagName('input');
+
+            div.onscroll = function() {
+                if (div.scrollHeight - div.scrollTop == div.clientHeight) {
+                    inputItems[0].removeAttribute('disabled');
+                    inputItems[1].disabled = false;
+                }
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <h3>Subscriber Agreement</h3>
+    <div id="info">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quibusdam voluptatibus numquam minima quod, aliquid quis. Perferendis doloribus vero labore consequuntur, impedit recusandae repudiandae distinctio necessitatibus inventore nemo. Tenetur,
+        beatae. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis veritatis obcaecati beatae! Consectetur atque magnam, rem omnis commodi excepturi recusandae mollitia suscipit corporis sed, tempore fugiat nisi dolor asperiores eveniet!
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione adipisci optio reiciendis dicta saepe a nulla sapiente rerum! Tempore odio culpa corrupti commodi soluta? Eum provident itaque officia assumenda inventore. Lorem ipsum dolor sit
+        amet, consectetur adipisicing elit. Non minima quos nulla enim aperiam tempore dicta maiores, officiis voluptatibus. Expedita eveniet ducimus impedit animi voluptatem ea molestiae atque reprehenderit reiciendis! Lorem ipsum dolor sit amet consectetur
+        adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quibusdam voluptatibus numquam minima quod, aliquid quis. Perferendis doloribus vero labore consequuntur, impedit recusandae repudiandae distinctio necessitatibus
+        inventore nemo. Tenetur, beatae. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis veritatis obcaecati beatae! Consectetur atque magnam, rem omnis commodi excepturi recusandae mollitia suscipit corporis sed, tempore fugiat
+        nisi dolor asperiores eveniet! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione adipisci optio reiciendis dicta saepe a nulla sapiente rerum! Tempore odio culpa corrupti commodi soluta? Eum provident itaque officia assumenda inventore.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non minima quos nulla enim aperiam tempore dicta maiores, officiis voluptatibus. Expedita eveniet ducimus impedit animi voluptatem ea molestiae atque reprehenderit reiciendis! Lorem ipsum
+        dolor sit amet consectetur adipisicing elitLorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quibusdam voluptatibus numquam minima quod, aliquid quis. Perferendis doloribus vero labore consequuntur, impedit recusandae repudiandae
+        distinctio necessitatibus inventore nemo. Tenetur, beatae. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis veritatis obcaecati beatae! Consectetur atque magnam, rem omnis commodi excepturi recusandae mollitia suscipit corporis
+        sed, tempore fugiat nisi dolor asperiores eveniet! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione adipisci optio reiciendis dicta saepe a nulla sapiente rerum! Tempore odio culpa corrupti commodi soluta? Eum provident itaque
+        officia assumenda inventore. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non minima quos nulla enim aperiam tempore dicta maiores, officiis voluptatibus. Expedita eveniet ducimus impedit animi voluptatem ea molestiae atque reprehenderit
+        reiciendis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dicta soluta eum quae eaque quod suscipit reiciendis quam provident autem, aut iste illum voluptatem consequatur sint? Ad libero saepe sapiente!
+    </div>
+    <input type="checkbox" name="agree" id="agree" disabled="false">Agree<br>
+    <input type="submit" name="submit" id="submit" disabled="disabled" value="Submit">
+</body>
+</html>
+```
+- 可以给div或者p标签设置overflow，为auto时，超酷哦党校边框的会出现滚动条，为hidden时，超过边框的内容将不被显示
+- 滚动条元素具有onscroll事件
+- input标签的disabled属性，可以通过赋值true和false该改变，或者直接removeAttribute('属性值')来直接删掉disabled属性
 
 
 
