@@ -32,10 +32,9 @@
             // 1. delete
             function delEmployee() {
                 var del = document.getElementsByTagName('a');
-                console.log(del.length);
-                for (i = 0; i < del.length; i++) {
+                for (i = 0; i < del.length; i++) {     // add onclick function for every <a>link
                     del[i].onclick = function() {
-                        var tr = this.parentNode.parentNode;              
+                        var tr = this.parentNode.parentNode;    // this代指当前被点击的delete连接             
                         var name = tr.getElementsByTagName('td')[0].innerText;
                         var flag = confirm('Delete? ' + name);   
                         if (flag) {
@@ -150,7 +149,8 @@
 ### 对于删除功能
 1. 获取删除超链接元素
 2. 创建单击事件函数
-    1. 找到该delete按钮所在行元素
+    1. 通过for循环为获取到的所有超链接元素，绑定onclick函数
+        - 注意！！！这里面要使用this来获取当前`<a>`标签下的父元素或子元素。这一点太重要了，看下面详细说明
     2. 弹出确认提示框 confirm提示框有确认和取消刘昂个按钮，分别返回true和false
     3. 确认则删除行，注意使用**`自己.父节点.删除子节点(自己)`**的方式最为简单
     
