@@ -15,7 +15,7 @@
 
 ## Usage
 ### 1. Script
-```javascript
+```html
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -32,7 +32,7 @@
 ```
 ### 2. Tag Attribute
 标签属性，结构与行为强耦合，不方便后期维护，不推荐使用
-```javascript
+```html
   <body>
     <button onclick="alert('welcome');">Click</button>
     
