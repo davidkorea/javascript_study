@@ -146,7 +146,7 @@
 </body>
 </html>
 ```
-### 对于删除功能
+## 1.1 删除功能
 1. 获取删除超链接元素
 2. 创建单击事件函数
     1. 通过for循环为获取到的所有超链接元素，绑定onclick函数
@@ -158,7 +158,38 @@
     - 定义好一个函数，但是不调用这个函数，则不会由于页面加载顺序而导致报错
 
 
-### 对于添加功能
+#### 细说 this
+```html
+<html>
+<head>
+    <script>
+        window.onload = function() {
+            var allBtn = document.getElementsByTagName('button');
+            for (i = 0; i < allBtn.length; i++) {
+                allBtn[i].onclick = function() {
+                    alert(allBtn[i]);
+                    alert(allBtn[i].innerText);
+                                          
+                    alert(this);              
+                    alert(this.innerText);
+                }
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div id="btnDiv">
+        <button id="btn">Click1</button>
+        <button id="btn">Click2</button>
+        <button id="btn">Click3</button>
+    </div>
+</body>
+</html>
+```
+
+
+## 1.2 对于添加功能
 1. 首先要获取submit按钮元素，在点击该按钮后，在<table>下面新添加一个行<tr>
 2. 设置该按钮的点击事件函数
     1. 分别找到每个input输入框的输入内容，因为时自闭标签，`元素.value`即可获取输入内容
