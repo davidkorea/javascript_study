@@ -3,6 +3,9 @@
 - delete删除当前行信息
 - submit体检新信息
 
+![Feb-07-2020 15-22-17](https://user-images.githubusercontent.com/26485327/74009240-c6223a80-49bd-11ea-8e14-b8a20ee16e7e.gif)
+
+
 ```html
 <html>
 <head>
