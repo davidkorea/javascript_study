@@ -193,7 +193,19 @@
 - 当响应函数执行的时候，for循环早就已经执行完了
 - 因此每次点击按钮，都是在for执行完所有元素之后的一个index
 
+![Feb-07-2020 16-54-58](https://user-images.githubusercontent.com/26485327/74014983-b826e680-49ca-11ea-8b2f-2b5ff29f5259.gif)
 
+```javascript
+window.onload = function() {
+    var allBtn = document.getElementsByTagName('button');
+    for (i = 0; i < allBtn.length; i++) {
+        alert('for loop is running: ' + i)
+        allBtn[i].onclick = function() {
+            alert('event function is running: ' + i)
+        }
+    }
+};
+```
 
 
 ## 1.2 对于添加功能
