@@ -36,7 +36,7 @@ console.log(div);
 
 # DOM 增删改
 
-### 1. 子节点-父节点
+### 1. 创建新节点
 点击按钮后，在页面添加一个选项。在<div id="checkbox">在添加一个checkbox input
         
 1. 创建一个标签元素`document.createElement('div');`
@@ -69,7 +69,7 @@ window.onload = function(){
 - appendChild 不能添加元素在form表单里面。新添加元素会闪一下，就就消失了。但是可以调整其他参数来显示
         - https://blog.csdn.net/sinat_27088253/article/details/51316760
 
-
+### 2. 插入替换元素
 4. `父节点.insertBefore(新添加节点，旧节点)`，同一个父节点下，添加新节点到已有节点之前
 
 ```html
