@@ -70,13 +70,36 @@ js可以通过DOM文档对象模型来操作html页面
 </body>
 </html>
 ```
+或者
+```html
+<html>
+
+<head>
+    <script>
+        function func() {
+            var btn = document.getElementById('btn'); // 由于下面还没加载，此时无法获得该btn按钮
+            btn.onclick = function() {
+                console.log('hi');
+            };
+        }
+      
+        func();     // 如果此处不调用函数，而只是定义一个函数则不会报错
+    </script>
+</head>
+
+<body>
+    <button id="btn">Click</button>
+</body>
+
+</html>
+```
 <img width="655" alt="截屏2020-02-05下午2 01 28" src="https://user-images.githubusercontent.com/26485327/73815154-05b32000-4820-11ea-821e-7165444de533.png">
 
 - 浏览器自上向下加载页面，加载一行运行一行
 - js代码在上面加载运行时，下面的html还没有加载，**页面没有加载完成则DOM对象也没有加载**，会导致报错
 - 那么需要上方的代码，等待整个html页面加载完成后在运行。而**等待页面加载完成onload，也是一个事件！**
   - 为window绑定onload事件
-
+- 如果将代码写到一个函数里面，定义好，但是不调用，则不会报错
 ```javascript
 <head>
     <script>
