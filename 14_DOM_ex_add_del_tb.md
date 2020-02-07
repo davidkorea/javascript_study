@@ -158,7 +158,7 @@
     - 定义好一个函数，但是不调用这个函数，则不会由于页面加载顺序而导致报错
 
 
-#### 细说 this
+#### - 细说 this
 ```html
 <html>
 <head>
@@ -167,11 +167,12 @@
             var allBtn = document.getElementsByTagName('button');
             for (i = 0; i < allBtn.length; i++) {
                 allBtn[i].onclick = function() {
-                    alert(allBtn[i]);
-                    alert(allBtn[i].innerText);
-                                          
-                    alert(this);              
-                    alert(this.innerText);
+                  // 自己本身的onclick函数中，没法使用自己
+                    alert(allBtn[i]);               // undefined
+                    alert(allBtn[i].innerText);     // no action
+                  // 自己本身的onclick函数中，要想使用自己，需要使用this                  
+                    alert(this);                    // [object HTMLButtonElement]
+                    alert(this.innerText);          // click1,click2,click3
                 }
             }
         };
@@ -187,7 +188,8 @@
 </body>
 </html>
 ```
-
+- this不是说可用也可不用的，或者说可有别的方式来代替。
+- 比如，**自己的事件函数里面，打印自己本身，调用自己本身，必须使用this**
 
 ## 1.2 对于添加功能
 1. 首先要获取submit按钮元素，在点击该按钮后，在<table>下面新添加一个行<tr>
