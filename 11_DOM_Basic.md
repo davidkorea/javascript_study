@@ -73,11 +73,10 @@ js可以通过DOM文档对象模型来操作html页面
 或者
 ```html
 <html>
-
 <head>
     <script>
-        function func() {
-            var btn = document.getElementById('btn'); // 由于下面还没加载，此时无法获得该btn按钮
+        function func() {     // 将上面代码放到一个函数中
+            var btn = document.getElementById('btn'); 
             btn.onclick = function() {
                 console.log('hi');
             };
@@ -90,7 +89,6 @@ js可以通过DOM文档对象模型来操作html页面
 <body>
     <button id="btn">Click</button>
 </body>
-
 </html>
 ```
 <img width="655" alt="截屏2020-02-05下午2 01 28" src="https://user-images.githubusercontent.com/26485327/73815154-05b32000-4820-11ea-821e-7165444de533.png">
