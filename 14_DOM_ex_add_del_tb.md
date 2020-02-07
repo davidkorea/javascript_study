@@ -53,7 +53,6 @@
                 var emailInput = document.getElementById('email');
                 var phoneInput = document.getElementById('phone');
 
-                // nameInput.value, emailInput.value, phoneInput.value
                 var table = document.getElementById('employeeTable');
                 var tr = document.createElement('tr');
 
@@ -171,6 +170,7 @@
     - 因为时刚毅加载页面，就已经调用的delete函数，而在那之后，才新增加的行元素，新增加的删除超链接元素不在删除函数获取的范围之内
 
 
+
 # 代码优化
 - 问题很明显，新建一行，需要创建很多元素节点以及输入内容的文本节点，拼接工作量太大
 - 但是直接`table.innerHTML += newElement`，会全部写入新的以及旧的内容
@@ -180,7 +180,29 @@
     - 添加时，仅将tr添加值tbody里面
 
 
+```javascript
+// add
+var clickBtn = document.getElementsByTagName('button')[0]
+clickBtn.onclick = function() {
+    // get the input of name,email,phone element
+    var nameInput = document.getElementById('emName').value;
+    var emailInput = document.getElementById('email').value;
+    var phoneInput = document.getElementById('phone').value;
 
+    var table = document.getElementById('employeeTable');
+    var tr = document.createElement('tr');
+
+    tr.innerHTML = "<td>" + nameInput + "</td>" +
+        "<td>" + emailInput + "</td>" +
+        "<td>" + phoneInput + "</td>" +
+        "<td><a href='javascript:;'>delete</a></td>";
+
+    // broswer will create a <tbody>
+    var tbody = document.getElementsByTagName('tbody')[0];
+    tbody.appendChild(tr);
+    delEmployee(); 
+}
+```
 
 
 
