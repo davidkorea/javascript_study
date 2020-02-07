@@ -1,5 +1,7 @@
 # 增加删除表格信息
 
+**函数的创建，要以事件为基础，不能以批量处理的for循环思路来创建**
+
 - delete删除当前行信息
 - submit体检新信息
 
@@ -31,9 +33,9 @@
                 console.log(del.length);
                 for (i = 0; i < del.length; i++) {
                     del[i].onclick = function() {
-                        var tr = this.parentNode.parentNode;                    // <a>'s parent <tr>
+                        var tr = this.parentNode.parentNode;              
                         var name = tr.getElementsByTagName('td')[0].innerText;
-                        var flag = confirm('Delete? ' + name);                  // cancel and confirm btn
+                        var flag = confirm('Delete? ' + name);   
                         if (flag) {
                             tr.parentNode.removeChild(tr);
                         }
@@ -83,7 +85,6 @@
                 // broswer will create a <tbody>
                 var tbody = document.getElementsByTagName('tbody')[0];
                 tbody.appendChild(tr);
-                // alert(input1);
                 delEmployee(); 
                 // 之前是页面加载时就有的delete动作，而那时候还没有新增
                 // 要想新增后也有删除动作，需要再次执行删除函数
@@ -145,7 +146,7 @@
 </body>
 </html>
 ```
-#### 对于删除功能
+### 对于删除功能
 1. 获取删除超链接元素
 2. 创建单击事件函数
     1. 找到该delete按钮所在行元素
@@ -156,7 +157,7 @@
     - 定义好一个函数，但是不调用这个函数，则不会由于页面加载顺序而导致报错
 
 
-#### 对于添加功能
+### 对于添加功能
 1. 首先要获取submit按钮元素，在点击该按钮后，在<table>下面新添加一个行<tr>
 2. 设置该按钮的点击事件函数
     1. 分别找到每个input输入框的输入内容，因为时自闭标签，`元素.value`即可获取输入内容
@@ -170,8 +171,13 @@
     - 因为时刚毅加载页面，就已经调用的delete函数，而在那之后，才新增加的行元素，新增加的删除超链接元素不在删除函数获取的范围之内
 
 
-
-
+# 代码优化
+- 问题很明显，新建一行，需要创建很多元素节点以及输入内容的文本节点，拼接工作量太大
+- 但是直接`table.innerHTML += newElement`，会全部写入新的以及旧的内容
+- 因此，结合上述两点
+    - 创建一个新的tr
+    - `tr.innerHTML += new`，行里的诸多标签节点和文本节点直接手写html代码
+    - 添加时，仅将tr添加值tbody里面
 
 
 
