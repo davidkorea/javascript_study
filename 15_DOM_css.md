@@ -123,7 +123,7 @@ var btn2 = document.getElementById('btn2');
 
 # 3. 练习：确认用户协议阅读完毕
 
-![Feb-07-2020 23-07-14](https://user-images.githubusercontent.com/26485327/74040418-a7906380-49fe-11ea-94a0-ce15e6a91346.gif)
+![Feb-07-2020 23-18-24](https://user-images.githubusercontent.com/26485327/74041207-30f46580-4a00-11ea-89e6-7d36f169d97a.gif)
 
 
 ```html
@@ -174,8 +174,8 @@ var btn2 = document.getElementById('btn2');
         officia assumenda inventore. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non minima quos nulla enim aperiam tempore dicta maiores, officiis voluptatibus. Expedita eveniet ducimus impedit animi voluptatem ea molestiae atque reprehenderit
         reiciendis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dicta soluta eum quae eaque quod suscipit reiciendis quam provident autem, aut iste illum voluptatem consequatur sint? Ad libero saepe sapiente!
     </div>
-    <input type="checkbox" name="agree" id="agree" disabled="false">Agree<br>
-    <input type="submit" name="submit" id="submit" disabled="disabled" value="Submit">
+    <input type="checkbox" name="agree" id="agree" disabled>Agree<br>
+    <input type="submit" name="submit" id="submit" disabled value="Submit">
 </body>
 </html>
 ```
