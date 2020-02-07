@@ -22,16 +22,15 @@
     </style>
     <script>
         window.onload = function() {
-            // delete
+            // 1. delete
             function delEmployee() {
                 var del = document.getElementsByTagName('a');
                 console.log(del.length);
                 for (i = 0; i < del.length; i++) {
                     del[i].onclick = function() {
-                        var tr = this.parentNode.parentNode; // <a> 's parent <tr>
-                        // alert('Delete?'); // alert canot cancel,find another window's method
+                        var tr = this.parentNode.parentNode;                    // <a>'s parent <tr>
                         var name = tr.getElementsByTagName('td')[0].innerText;
-                        var flag = confirm('Delete? ' + name); // has cancel and confirm
+                        var flag = confirm('Delete? ' + name);                  // cancel and confirm btn
                         if (flag) {
                             tr.parentNode.removeChild(tr);
                         }
@@ -39,11 +38,9 @@
                 }
             };
             delEmployee();
-            // 该函数是页面加载就运行了，可是这时候还没有执行下面的add
-            // 所以下面新增的不会有delete动作
 
 
-            // add
+            // 2. add
             var clickBtn = document.getElementsByTagName('button')[0]
             clickBtn.onclick = function() {
                 // get name,email,phone element
@@ -84,13 +81,10 @@
                 var tbody = document.getElementsByTagName('tbody')[0];
                 tbody.appendChild(tr);
                 // alert(input1);
-                delEmployee(); //  之前是页面加载时就有的delete动作，而那时候还没有新增
+                delEmployee(); 
+                // 之前是页面加载时就有的delete动作，而那时候还没有新增
                 // 要想新增后也有删除动作，需要再次执行删除函数
             }
-
-
-            // 以onclick事件为单位 创建函数。不能以批量的思维创建！！！！
-
         }
     </script>
 </head>
@@ -114,16 +108,13 @@
             <td>tom@hi.com</td>
             <td>01012345678</td>
             <!-- <td><a href="./adddelemployee.html">delete</a> </td> -->
-            <!-- 否则超链接会跳转，不能执行js代码 -->
+            <!-- 点击一个超链接后，会自动调转，不论是否设定href，跳转后，旧不能执行js代码 -->
             <td><a href="javascript:;">delete</a> </td>
-
         </tr>
     </table>
 
-
     <div id="formDiv">
         <h4>Add new</h4>
-
         <table>
             <tr>
                 <td class="word">Name</td>
@@ -149,21 +140,28 @@
         </table>
     </div>
 </body>
-
 </html>
 ```
-对于删除功能
+#### 对于删除功能
 1. 获取删除超链接元素
 2. 创建单击事件函数
-    - 找到该delete按钮所在行元素
-    - 弹出确认提示框 confirm提示框有确认和取消刘昂个按钮，分别返回true和false
-    - 确认则删除行，注意使用**`自己.父节点.删除子节点(自己)`**的方式最为简单
+    1. 找到该delete按钮所在行元素
+    2. 弹出确认提示框 confirm提示框有确认和取消刘昂个按钮，分别返回true和false
+    3. 确认则删除行，注意使用**`自己.父节点.删除子节点(自己)`**的方式最为简单
     
 3. 注意该删除功能的函数可以放在window.onload()的外面，不需要等到加载页面时在加载
-    -
+    - 定义好一个函数，但是不调用这个函数，则不会由于页面加载顺序而导致报错
 
 
-
+#### 对于添加功能
+1. 首先要获取submit按钮元素，在点击该按钮后，在<table>下面新添加一个行<tr>
+2. 设置该按钮的点击事件函数
+    1. 分别找到每个input输入框的输入内容，因为时自闭标签，`元素.value`即可获取输入内容
+    2. 分别创建tr，td，a，text元素，并拼接
+    3. 最后拼接到table下面
+        - 注意！！虽然html源代码中没有，但是浏览器自动把多个<td>放到一个`<tbody>`标签下
+        - 为了css样式能够正常套用，也需要将上面新创建的元素添加到浏览器生成的`<tbody>`标签下
+        - `<tbody>`标签元素按照正常方式获取即可
 
 
 
