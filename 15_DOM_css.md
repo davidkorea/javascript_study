@@ -44,7 +44,8 @@
 # 2. 读取当前样式值
 读取当前显示的样式的值，也不是css的也不一定时内建样式，谁生效，获取谁的值
 
-一下两种方法为只读，不可以通过其进行属性值的设定，修改必须通过style进行
+一下方法为只读，不可以通过其进行属性值的设定，修改必须通过style进行
+
 1. `对象.currentStyle.height`，仅IE支持
 2. `getComputedStyle(box, null);`，window属性，可直接调用，返回一个style对象，需要什么样式属性，在该对象中查找
     - **对于css没有设置的属性，将返回当前的实际值大小**
@@ -104,6 +105,25 @@ var btn2 = document.getElementById('btn2');
 </script>
 ```
 <img width="432" src="https://user-images.githubusercontent.com/26485327/74029382-8a9c6600-49e7-11ea-8b42-c6a61935dee1.png">
+
+
+4. `offsetWidth`, `offsetHeight`，偏移量，可以获取包括边框border的数值，也没有px，仅数值
+
+5. `offsetParent`，定位父元素，返回离当前元素最近的开启了定位`position: relative;`的外围元素，只要position你不是static就有事开启了定位
+    - 如果所有祖先元素都没开启定位，则返回body
+    
+6. `offsetLeft`, `offsetTop`，当前元素相对于定位元素（offsetParent）的水平偏移量和垂直偏移量
+
+7. `scrollWidth`，`scrollHeight`，可以获取元素整个滚动区域的宽度和高度，clientWidth和clientHeight只可以获取课件区域的大小，而非元素的完整大小
+8. `scrollLeft`，`scrollTop`，水平滚动条，举例左边界滚动的举例。垂直滚动条，举例顶部滚动的举例
+    - 当垂直滚动条到底时，`scrollHeight - scrollTop = clientHeight`
+    - 当水平滚动条到后时，`scrollWidth - scrollLeft = clientWidth`
+    - 应用场景就是，注册时，用户条款全部月丹完成后，就是滚动条拉倒底后，才能继续注册
+
+
+
+
+
 
 
 
