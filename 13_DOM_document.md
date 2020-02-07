@@ -100,8 +100,8 @@ window.onload = function(){
 5. `父节点.replaceChild(新添加节点，被替换节点)`，替换子节点
 
 6. `父节点.removeChild(子节点)`，删除子节点
-        - **`子节点.parentNode.removeChild()`**，更常用。通过当前节点，获取其父节点，在通过父节点找到其下面的其他子节点。这样就不用单独去获取一个元素的父节点了
-        - 删除自己，可以`自己.parentNode.removeChild(自己)`
+    - `子节点.parentNode.removeChild()`，更常用。通过当前节点，获取其父节点，在通过父节点找到其下面的其他子节点。这样就不用单独去获取一个元素的父节点了
+    - **删除自己**，可以`自己.parentNode.removeChild(自己)`
         
 7. `div_add.innerHTML += '<div>new text</div>'`，最最简单，直接添加innerHTML，但是这种方式消耗太大。因为需要替换掉原来的html代码，天健一部分新代码后，在拼接上原来的，组成新的插入ducoment。根据实际情况和上面的appendChild结合使用
 
