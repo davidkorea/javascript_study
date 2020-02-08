@@ -68,10 +68,18 @@ bindEvent(btn, 'click', function() {
 - chrome和firefox，显示顺序 1 -> 2
 
 接下来，统一this
+- this指代谁，是由调用方式决定的
+- 此处由于时函数调用`obj.attachEvent('on' + event, callback);`，callback函数调用
+- 但是callback函数是浏览器调用的，我们控制不了，如果我们能3，则需要使用`callback.call(obj)`这种方式来修改函数的this
+- 此时，我们不再使用callback函数来让浏览器调用，而是自行写一个匿名函数，此时将触发匿名函数，再在匿名函数中调用callback函数
 
-
-
-
+```diff
+- obj.attachEvent('on' + event, callback);
++ obj.attachEvent('on' + event, function(){
+    callback.call(obj);
+  });
+```
+- 此时this就是obj了
 
 
 
