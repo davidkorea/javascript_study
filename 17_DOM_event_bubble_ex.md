@@ -81,7 +81,7 @@ FatherObj.onclick = function(e){
 - 事件委派利用了冒泡
 - 通过委派可以减少事件绑定的次数，提供性能
 
-# 练习：点击链接显示内容，点击按钮添加新链接
+#### 练习：点击链接显示内容，点击按钮添加新链接
 ```html
 <html>
 <head>
@@ -124,6 +124,10 @@ FatherObj.onclick = function(e){
 - 问题2：事件委派很好，但是容易造成，点击所有父元素区域都执行操作，而不是指定的子元素
   - 通过浏览器传给事件函数的实参：**事件对象**，来获取当前点击的对象`event.target`，如果是对应的子元素对象，则执行，否在不执行
   
+  
+![Feb-08-2020 16-08-46](https://user-images.githubusercontent.com/26485327/74081751-7448e580-4a8d-11ea-9222-2526ea4c8bbe.gif)
+  
+
 ```html
 <html>
 <head>
