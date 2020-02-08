@@ -80,5 +80,28 @@ var offsetX = e.clientX - box1.offsetLeft;
 var offsetY = e.clientY - box1.offsetTop;
 ```
 
+![Feb-08-2020 23-12-25](https://user-images.githubusercontent.com/26485327/74087560-7ed4a080-4ac8-11ea-8a3f-35c876e5d245.gif)
                   
-                  
+```javascript
+window.onload = function() {
+    var box1 = document.getElementById('box1');
+
+    box1.onmousedown = function(e) {           // 这个e和下面函数的e不是同一个
+        e = e || window.e;
+        var offsetX = e.clientX - box1.offsetLeft;
+        var offsetY = e.clientY - box1.offsetTop;
+
+        document.onmousemove = function(e) {
+            e = e || window.e;
+            var left = e.clientX - offsetX;
+            var top = e.clientY - offsetY;
+            box1.style.left = left + 'px';
+            box1.style.top = top + 'px';
+        };
+        document.onmouseup = function() {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        };
+    }
+}
+```
