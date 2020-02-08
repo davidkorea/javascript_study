@@ -98,5 +98,55 @@ e = e || window.e
 - 由于鼠标坐标只有数值，没有单位，在赋值给div的style时，需要手动添加单位px
 - 由于设置style偏移量，元素需要开启定位position，否则虽然有样式，但是元素不会动。**给谁设置样式偏移量，就要给谁开启定位**
 
+```html
+<style>
+    body {
+        height: 1000px;
+    }
+
+    #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+    }
+</style>
+<script>
+    window.onload = function() {
+        var box1 = document.getElementById('box1');
+        document.onmousemove = function(e) {
+            e = e || window.e;
+            box1.style.left = e.clientX + 'px';
+            box1.style.top = e.clientY + 'px';
+        }
+    };
+</script>
+```
+- 当页面body高度超过浏览器可视界面后，将出现滚动条。滚动到页面最后时，鼠标和box无法重合，box无法移动到页面最下端
+    - 可以看出，差出来的举例就是滚动条滚动的距离scrollTop
+- 原因
+    - 鼠标的位置，始终是相对于浏览器课件窗口的位置
+    - div的位置，是相当于整个body页面
+        - sclientX，clientY，鼠标相对于浏览器可见窗口的位置，此处不能使用
+        - pageX，pageY，鼠标相对于整个页面的坐标，但是不支持IE8
+
+- 为了兼容所有浏览器，手动改进添加缺少的scrollTop偏移量
+    - 获取scrollTop的值
+        - chrome & IE 滚动条属于body 
+        - firefox 滚动条属于body的父元素html
+
+```javascript
+var box1 = document.getElementById('box1');
+var top = document.body.scrollTop || document.documentElement.scrollTop;
+
+document.onmousemove = function(e) {
+    e = e || window.e;
+    box1.style.left = e.pageX + 'px';
+    box1.style.top = e.pageY + top + 'px';
+}
+```
+
+
+
 
 
