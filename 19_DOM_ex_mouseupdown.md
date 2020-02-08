@@ -8,10 +8,11 @@
         - 如果onmousemove事件绑定给box1，当鼠标移出box1的外翻之内，onmousemove事件将无法被触发，也就不能移动box1
 4. onmouseup，松开鼠标
     - 首先onmouseup不能绑定给box1，而要绑定给docum
-        - 因为box1走到其他元素，如兄弟节点box2元素时，由于冒泡，box1的鼠标事件将失效，因为其他元素上没有绑定任何事件
+        - 因为box1走到其他元素，如兄弟节点box2元素时，由于冒泡，会触发box2的事件，但box2上没有绑定任何事件。所以box1的鼠标移动事件将失效
     - 当松开鼠标时，onmousemove事件需要停止，设置为null
     - 同样鼠标松开后，onmouseup事件自己本身也要设置为null
         - 否则点击document页面的空白地方，松开鼠标一样会触发此事件
+    - **因为onmousemove和onmouseup事件都是在onmousedown事件下面执行，当鼠标不是在onmousedown的状态下时，这两个内层事件都要被取消**
 
 ![Feb-08-2020 22-28-50](https://user-images.githubusercontent.com/26485327/74086904-6b263b80-4ac2-11ea-9eb0-f9d230bcd2c2.gif)
 
