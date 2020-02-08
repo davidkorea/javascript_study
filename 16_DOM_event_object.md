@@ -67,6 +67,9 @@ e = e || window.e
 
 # 练习：div跟随鼠标移动
 
+![Feb-08-2020 14-39-00](https://user-images.githubusercontent.com/26485327/74080615-ccc5b600-4a80-11ea-9c5a-a73434903c4a.gif)
+
+
 ```html
 <html>
 <head>
