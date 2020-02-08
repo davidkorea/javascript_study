@@ -25,6 +25,7 @@
             height: 20px;
             border: 2px solid;
             margin: 10;
+            text-align: center;
         }
     </style>
     <script>
@@ -32,7 +33,7 @@
             var mouseDiv = document.getElementById('mouseDiv');
             var msgDiv = document.getElementById('msgDiv');
             mouseDiv.onmousemove = function(e) {
-                msgDiv.innerText = "x = " + e.clientX + ", Y = " + e.clientY;
+                msgDiv.innerText = "X = " + e.clientX + ", Y = " + e.clientY;
             }
         };
     </script>
@@ -44,3 +45,26 @@
 </body>
 </html>
 ```
+
+- IE8中，浏览器不会传递该**事件对象**实参给响应函数，而是将事件对象最为window的属性保存
+    - 响应函数中，通过调用window.event即可使用
+    
+- 兼容多浏览器
+
+```javascript
+mouseDiv.onmousemove = function(e) {
+    if(!e){
+        e = window.e;
+    }
+    msgDiv.innerText = "X = " + e.clientX + ", Y = " + e.clientY;
+}
+```
+
+
+
+
+
+
+
+
+
