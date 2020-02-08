@@ -75,6 +75,8 @@
 - div的水平偏移量 = 鼠标.clientX - 元素.offsetLeft
 - div的垂直偏移量 = 鼠标.clientY - 元素.offsetTop
 
+![7168CBE0-020A-4D2A-B50A-680DB5F6B026](https://user-images.githubusercontent.com/26485327/74087516-f6560000-4ac7-11ea-9213-9e0986f26f93.jpeg)
+
 ```javascript
 var offsetX = e.clientX - box1.offsetLeft;
 var offsetY = e.clientY - box1.offsetTop;
