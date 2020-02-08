@@ -185,6 +185,7 @@ var btn2 = document.getElementById('btn2');
 
 
 
+# 练习：页面鼠标坐标
 
 
 
