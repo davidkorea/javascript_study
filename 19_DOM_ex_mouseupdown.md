@@ -1,18 +1,20 @@
 
 # 点住鼠标移动方块，桌面拖动图标
-1. div的样式需要开启定位
-    - box必须设置position，才可以根据设置的样式位置参数来移动
-2. onmousedown，点住鼠标
-3. onmousemove，鼠标移动需要在onmousedown事件函数内部执行
-    - 跟随鼠标移动时，事件要绑定到document，而不能绑定box1
-        - 如果onmousemove事件绑定给box1，当鼠标移出box1的外翻之内，onmousemove事件将无法被触发，也就不能移动box1
-4. onmouseup，松开鼠标
-    - 首先onmouseup不能绑定给box1，而要绑定给docum
-        - 因为box1走到其他元素，如兄弟节点box2元素时，由于冒泡，会触发box2的事件，但box2上没有绑定任何事件。所以box1的鼠标移动事件将失效
-    - 当松开鼠标时，onmousemove事件需要停止，设置为null
-    - 同样鼠标松开后，onmouseup事件自己本身也要设置为null
-        - 否则点击document页面的空白地方，松开鼠标一样会触发此事件
-    - **因为onmousemove和onmouseup事件都是在onmousedown事件下面执行，当鼠标不是在onmousedown的状态下时，这两个内层事件都要被取消**
+
+#### 1. div开启定位
+- box必须设置position，才可以根据设置的样式位置参数来移动
+#### 2. onmousedown，点住鼠标
+#### 3. onmousemove，鼠标移动
+- 需要在onmousedown事件函数内部执行
+- 跟随鼠标移动时，事件要绑定到document，而不能绑定box1
+    - 如果onmousemove事件绑定给box1，当鼠标移出box1的外翻之内，onmousemove事件将无法被触发，也就不能移动box1
+#### 4. onmouseup，松开鼠标
+- 首先onmouseup不能绑定给box1，而要绑定给docum
+    - 因为box1走到其他元素，如兄弟节点box2元素时，由于冒泡，会触发box2的事件，但box2上没有绑定任何事件。所以box1的鼠标移动事件将失效
+- 当松开鼠标时，onmousemove事件需要停止，设置为null
+- 同样鼠标松开后，onmouseup事件自己本身也要设置为null
+    - 否则点击document页面的空白地方，松开鼠标一样会触发此事件
+- **因为onmousemove和onmouseup事件都是在onmousedown事件下面执行，当鼠标不是在onmousedown的状态下时，这两个内层事件都要被取消**
 
 ![Feb-08-2020 22-28-50](https://user-images.githubusercontent.com/26485327/74086904-6b263b80-4ac2-11ea-9eb0-f9d230bcd2c2.gif)
 
@@ -68,7 +70,15 @@
 ```
 - 问题：鼠标点中无论box1的哪一点，鼠标都会自动复位到div的默认左上角，体验不好
                   
-                  
-                  
+# 2. 保持鼠标位置不变
+因为在box1里面，每次点住鼠标，box1为自动调到鼠标所在位置，导致在移动鼠标之前，box1会跳动，感觉不友好。要解决，需要获取鼠标相对于box1左上定点的距离，并保持该相对距离不变。因此要讲box1的跳动的偏移量找到，在给box1重新加回去
+- div的水平偏移量 = 鼠标.clientX - 元素.offsetLeft
+- div的垂直偏移量 = 鼠标.clientY - 元素.offsetTop
+
+```javascript
+var offsetX = e.clientX - box1.offsetLeft;
+var offsetY = e.clientY - box1.offsetTop;
+```
+
                   
                   
