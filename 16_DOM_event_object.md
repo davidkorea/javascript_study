@@ -130,18 +130,18 @@ e = e || window.e
         - sclientX，clientY，鼠标相对于浏览器可见窗口的位置，此处不能使用
         - pageX，pageY，鼠标相对于整个页面的坐标，但是不支持IE8
 
-- 为了兼容所有浏览器，手动改进添加缺少的scrollTop偏移量
-    - 获取scrollTop的值
-        - chrome & IE 滚动条属于body 
-        - firefox 滚动条属于body的父元素html
+- 为了兼容所有浏览器，手动改进添加缺少的scrollTop偏移量以及scrollLeft偏移量
+    - chrome & IE 滚动条属于body 
+    - firefox 滚动条属于body的父元素html
 
 ```javascript
 var box1 = document.getElementById('box1');
 var top = document.body.scrollTop || document.documentElement.scrollTop;
+var left = document.body.scrollLeft || document.documentElement.scrollLeft;
 
 document.onmousemove = function(e) {
     e = e || window.e;
-    box1.style.left = e.pageX + 'px';
+    box1.style.left = e.pageX + left + 'px';
     box1.style.top = e.pageY + top + 'px';
 }
 ```
