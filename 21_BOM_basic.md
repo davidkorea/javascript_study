@@ -53,6 +53,12 @@ BOM对象在浏览器中
   ```
 
 # 2. history
+
+![F1B25958-6C19-4325-8E6B-BB01C31D5C77](https://user-images.githubusercontent.com/26485327/74102424-5effb400-4b7e-11ea-9bf0-128c926c60e1.jpeg)
+![74A3B1CF-3B03-47FE-99A1-9E50D530063E](https://user-images.githubusercontent.com/26485327/74102428-63c46800-4b7e-11ea-93ec-4b4c902705a8.jpeg)
+![0012931E-D146-4258-A011-5893658A4478](https://user-images.githubusercontent.com/26485327/74102430-658e2b80-4b7e-11ea-86b2-19974e1861af.jpeg)
+![E5708F2D-484B-48FF-A0BB-7AEBB6BFD499](https://user-images.githubusercontent.com/26485327/74102447-7dfe4600-4b7e-11ea-8b53-53429a85c9e4.jpeg)
+
 操作浏览器向前向后翻页，浏览器关闭后，历史记录消失
 属性
 - length，访问页面的个数
