@@ -31,7 +31,7 @@ BOM对象在浏览器中
   ```javascript
   var userAgent = navigator.userAgent;
   
-  if (/chrome/i.test(userAgent)) {
+  if (/chrome/i.test(userAgent)) {          // i 忽略大小写
       alert('chrome');
   } else if (/safari/i.test(userAgent)) {
       alert('safari');
@@ -39,6 +39,55 @@ BOM对象在浏览器中
       alert('???');
   }
   ```
+- 如果userAgent不能判断浏览器信息，如IE11，则找到IE11独有的一些对象，如果有就是IE11
+  ```javascript
+    if (window.ActiveXObject) {       // IE 8,9,10 ok
+        alert('IE');
+    }
+  ```
+  - 虽然IE11有这个属性，但是转换成boolean时，时false，微软做了手脚
+  ```javascript
+  if ('ActiveXObject' in window) {    // IE 11
+      alert('IE');
+  }
+  ```
+
+# 2. history
+操作浏览器向前向后翻页，浏览器关闭后，历史记录消失
+属性
+- length，访问页面的个数
+方法
+- back，同浏览器后退按钮
+- forward，同浏览器前进按钮
+- go，跳转到指定界面，需要整数参数
+  - go(1)，向前1个页面
+  - go(-1)，向后1个页面
+  
+# 3. location
+地址栏
+- console.log(location)，当前页面的地址
+- `location = www.a.com`，修改location的值，可以实现页面跳转，并生成响应的历史记录history  
+  
+属性，如图
+
+方法
+- assign，和直接给location赋值的效果一样
+- reload，重新加载当前页面，和浏览器刷新按钮一样
+  - `reload(true)`，强制清空缓存刷新界面，清楚一个输入框里面的信息等
+- replace，也可以跳转页面，但是不能后退回去，不生成历史记录
+  
+# 4. screen
+
+# 5. window
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
