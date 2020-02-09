@@ -163,7 +163,11 @@ box1.onmousedown = function(){
     - 当前面为true，则执行后面语句
     - 前面为false，则直接放弃执行
 
-# 设置2个box都可以移动
+# 4. 设置2个box都可以移动
+
+
+![Feb-09-2020 12-53-48](https://user-images.githubusercontent.com/26485327/74096558-83866c80-4b3b-11ea-8bfb-8121e345f79f.gif)
+
 ```javascript
 window.onload = function() {
     function dragBox(boxId) {
