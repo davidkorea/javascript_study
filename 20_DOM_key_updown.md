@@ -17,6 +17,7 @@
   
 - 按下了哪个键？浏览器传给的事件对象
   - `event.keyCode`，返回按键的unicode
+    - 当不知道某个按键的code时，console.log看一下
   - 按下功能键，alt，shift，ctrl，`event.altKey`，`event.ctrlKey`，`event.shifyKEy`
   - 限制输入数字
   ```javascript
@@ -29,3 +30,14 @@
       }
   }
   ```
+
+### 练习：上下左右按键控制移动放线
+- console.log查一下四个方向键的keyCode
+  - left 37
+  - up 38
+  - right 39
+  - down 40
+  
+  
+  
+  
