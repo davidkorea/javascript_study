@@ -110,9 +110,97 @@ BOM对象在浏览器中
 </body>
 </html>
 ```
-### 练习：图片
-  
-  
+### 练习：图片滚动
+
+```html
+<html>
+<head>
+    <style>
+        div {
+            width: 500px;
+            text-align: center;
+            padding-top: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var btn1 = document.getElementById('btn1');
+            var btn2 = document.getElementById('btn2');
+
+            var timer1; // 全局定义完成，在函数内部赋值使用！！！
+
+            btn1.onclick = function() {
+                var img = document.getElementsByTagName('img')[0];
+                var imgList = ['1.png', '2.png', '3.png', '4.png'];
+                var idx = 0;
+                timer1 = setInterval(() => {
+                    idx++;
+                    console.log(idx);
+
+                    img.src = imgList[idx];
+                    if (idx > imgList.length - 2) {
+                        idx = -1;
+                    }
+                }, 1000);
+            };
+
+            btn2.onclick = function() {
+                clearInterval(timer1);
+                console.log('pause');
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <img src="1.png" width="500" height="300">
+    <div>
+        <button id="btn1">start</button>
+        <button id="btn2">pause</button>
+    </div>
+</body>
+</html>
+```
+- 全局作用域定义变量，在一个事件函数中为其赋值，可以在另一个函数中调用改变量
+  - 如果直接创建事件函数内，则无法在其他函数中调用
+- 问题：可以无线点击开始按钮，导致每次都会重新开始一个滚动时间，而pause只能暂停左后一个，之前的都不能取消
+  - 解决：在onclick事件出发后，首先停止一下计数器clearInterval，以用于万一再次之前已经有一次滚动事件触发
+
+
+![Feb-09-2020 20-51-08](https://user-images.githubusercontent.com/26485327/74102375-f6183c00-4b7d-11ea-92b9-2a2e61ab3821.gif)
+
+
+```javascript
+window.onload = function() {
+    var btn1 = document.getElementById('btn1');
+    var btn2 = document.getElementById('btn2');
+
+    var timer1; // 全局定义完成，在哦函数内部赋值使用！！！
+
+    btn1.onclick = function() {
+        clearInterval(timer1);    // 开始计时器之前先取消之前的，如果之前已经开了一个定时器
+
+        var img = document.getElementsByTagName('img')[0];
+        var imgList = ['1.png', '2.png', '3.png', '4.png'];
+        var idx = 0;
+        timer1 = setInterval(() => {
+            idx++;
+            console.log(idx);
+
+            img.src = imgList[idx];
+            if (idx > imgList.length - 2) {
+                idx = -1;
+            }
+        }, 1000);
+    };
+
+    btn2.onclick = function() {
+        clearInterval(timer1);
+        console.log('pause');
+    }
+};
+```
+- 开启计时器之前，关闭当前元素上的其他定时器
   
   
   
