@@ -31,7 +31,7 @@
   }
   ```
 
-### 练习：上下左右按键控制移动放线
+### 练习：上下左右按键控制移动方向
 - console.log查一下四个方向键的keyCode
   - left 37
   - up 38
@@ -74,4 +74,36 @@
 </html>
 ```
 
+#### 增加功能：按住shift，移动加速
+
+![Feb-09-2020 14-43-10](https://user-images.githubusercontent.com/26485327/74097717-8c326f00-4b4a-11ea-9bef-82adbc564d71.gif)
+
+
+```javascript
+window.onload = function() {
+    var box1 = document.getElementById('box1');
+
+    document.onkeydown = function(e) {
+        if (e.shiftKey) {
+            step = 100;
+        } else {
+            step = 10;
+        }
+        switch (e.keyCode) {
+            case 37:
+                box1.style.left = box1.offsetLeft - step + 'px';
+                break;
+            case 38:
+                box1.style.top = box1.offsetTop - step + 'px';
+                break;
+            case 39:
+                box1.style.left = box1.offsetLeft + step + 'px';
+                break;
+            case 40:
+                box1.style.top = box1.offsetTop + step + 'px';
+                break;
+        }
+    }
+}
+```
   
