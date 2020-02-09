@@ -21,3 +21,4 @@ BOM对象在浏览器中
 
 # 1. navigator
 
+![6550452B-DC67-47EA-9376-363C3B781137](https://user-images.githubusercontent.com/26485327/74097945-1976c300-4b4d-11ea-9b15-1b1c9cfb937f.jpeg)
