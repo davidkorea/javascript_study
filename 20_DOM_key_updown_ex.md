@@ -106,4 +106,70 @@ window.onload = function() {
     }
 }
 ```
-  
+#### 解决起步卡顿
+
+![Feb-09-2020 21-18-09](https://user-images.githubusercontent.com/26485327/74102771-b7848080-4b81-11ea-94a0-8166efc5f52e.gif)
+
+```javascript
+window.onload = function() {
+    var box1 = document.getElementById('box1');
+
+    var step = 5;
+    var dir = 0;
+
+    setInterval(function() {
+
+        switch (dir) {
+            case 37:
+                box1.style.left = box1.offsetLeft - step + 'px';
+                break;
+            case 38:
+                box1.style.top = box1.offsetTop - step + 'px';
+                break;
+            case 39:
+                box1.style.left = box1.offsetLeft + step + 'px';
+                break;
+            case 40:
+                box1.style.top = box1.offsetTop + step + 'px';
+                break;
+        }
+    }, 30);
+
+    document.onkeydown = function(e) {
+        if (e.shiftKey) {
+            step = 30;
+        } else {
+            step = 5;
+        }
+        dir = e.keyCode;
+    };
+
+    document.onkeyup = function() {
+        dir = 0;
+    };
+}
+```
+- 设置一个全局变量：方向dir，先定义不赋值
+  - 用于各个函数之间调用这个变量
+- 当键盘按钮按下时，获取键盘的方向键赋值给方向dir变量
+- 设置一定定时器，每30ms检查一次，方向键是否按下，如果匹配好方向键则执行下面的switch函数，如果没有匹配，则每30ms检查完结束
+- 添加按键抬起事件，按键松开后，将方向设置为0，或者其他四个方向键之外的数字
+       
+将见按键事件和运动事件分开，则不会出现卡顿现象
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
