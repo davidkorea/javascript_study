@@ -55,9 +55,7 @@ BOM对象在浏览器中
 # 2. history
 
 ![F1B25958-6C19-4325-8E6B-BB01C31D5C77](https://user-images.githubusercontent.com/26485327/74102424-5effb400-4b7e-11ea-9bf0-128c926c60e1.jpeg)
-![74A3B1CF-3B03-47FE-99A1-9E50D530063E](https://user-images.githubusercontent.com/26485327/74102428-63c46800-4b7e-11ea-93ec-4b4c902705a8.jpeg)
-![0012931E-D146-4258-A011-5893658A4478](https://user-images.githubusercontent.com/26485327/74102430-658e2b80-4b7e-11ea-86b2-19974e1861af.jpeg)
-![E5708F2D-484B-48FF-A0BB-7AEBB6BFD499](https://user-images.githubusercontent.com/26485327/74102447-7dfe4600-4b7e-11ea-8b53-53429a85c9e4.jpeg)
+
 
 操作浏览器向前向后翻页，浏览器关闭后，历史记录消失
 属性
@@ -73,7 +71,9 @@ BOM对象在浏览器中
 地址栏
 - console.log(location)，当前页面的地址
 - `location = www.a.com`，修改location的值，可以实现页面跳转，并生成响应的历史记录history  
-  
+
+![74A3B1CF-3B03-47FE-99A1-9E50D530063E](https://user-images.githubusercontent.com/26485327/74102428-63c46800-4b7e-11ea-93ec-4b4c902705a8.jpeg)
+
 属性，如图
 
 方法
@@ -83,6 +83,7 @@ BOM对象在浏览器中
 - replace，也可以跳转页面，但是不能后退回去，不生成历史记录
   
 # 4. screen
+![0012931E-D146-4258-A011-5893658A4478](https://user-images.githubusercontent.com/26485327/74102430-658e2b80-4b7e-11ea-86b2-19974e1861af.jpeg)
 
 # 5. window
 定时调用，每间隔一段时间，发生一次
@@ -91,7 +92,8 @@ BOM对象在浏览器中
   - 返回值，是个数字，作为定时器的唯一标识，用于关闭定时器
   - clearInterval()关闭定时器，可以接收任意参数，如undefined，null都可以
     - 如果参数有效，则停止定时器，参数无效则五动作
-  
+    
+![E5708F2D-484B-48FF-A0BB-7AEBB6BFD499](https://user-images.githubusercontent.com/26485327/74102447-7dfe4600-4b7e-11ea-8b53-53429a85c9e4.jpeg)  
   
 ```html
 <html>
