@@ -38,6 +38,40 @@
   - right 39
   - down 40
   
-  
-  
+```html
+<html>
+<head>
+    <style>
+        #box1 {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var box1 = document.getElementById('box1');
+
+            document.onkeydown = function(e) {
+                if (e.keyCode == 37) {
+                    box1.style.left = box1.offsetLeft - 10 + 'px';
+                } else if (e.keyCode == 38) {
+                    box1.style.top = box1.offsetTop - 10 + 'px';
+                } else if (e.keyCode == 39) {
+                    box1.style.left = box1.offsetLeft + 10 + 'px';
+                } else {
+                    box1.style.top = box1.offsetTop + 10 + 'px';
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box1"></div>
+</body>
+</html>
+```
+
   
