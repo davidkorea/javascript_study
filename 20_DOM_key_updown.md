@@ -1,0 +1,31 @@
+
+事件函数的默认行为可以在函数最后return false来取消
+- input 取消输入
+- a 取消自动跳转
+
+
+# 键盘事件
+
+键盘事件一般绑定给可以获取焦点（光标）的对象，或者是document，而不是div
+
+- onkeydown
+  - 如果一直按住一个键不松手，会一直连续不断的触发该事件
+  - 第一次会稍微卡一下，后面会连续不断触发，就想在输入框连续输入多个同样的字母，防止误操作
+
+- onkeyup
+  - 不会连续触发
+  
+- 按下了哪个键？浏览器传给的事件对象
+  - `event.keyCode`，返回按键的unicode
+  - 按下功能键，alt，shift，ctrl，`event.altKey`，`event.ctrlKey`，`event.shifyKEy`
+  - 限制输入数字
+  ```javascript
+  window.onload = function() {
+      var ipt = document.getElementsByTagName('input')[0];
+      ipt.onkeydown = function(e) {
+          if (e.keyCode >= 48 && e.keyCode <= 57) {
+              return false
+          }
+      }
+  }
+  ```
