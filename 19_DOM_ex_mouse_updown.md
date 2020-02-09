@@ -9,8 +9,9 @@
 - 跟随鼠标移动时，事件要绑定到document，而不能绑定box1
     - 如果onmousemove事件绑定给box1，当鼠标移出box1的外翻之内，onmousemove事件将无法被触发，也就不能移动box1
 #### 4. onmouseup，松开鼠标
-- 首先onmouseup不能绑定给box1，而要绑定给docum
-    - 因为box1走到其他元素，如兄弟节点box2元素时，由于冒泡，会触发box2的事件，但box2上没有绑定任何事件。所以box1的鼠标移动事件将失效
+- 首先onmouseup不能绑定给box1，而要绑定给document
+    - 因为box1走到其他元素，如兄弟节点box2元素时，~~由于冒泡~~，**兄弟节点之间没有冒泡，只有父子节点会冒泡**
+    - 鼠标移动到box2时，会触发box2的事件，所以box1的鼠标移动事件将失效
 - 当松开鼠标时，onmousemove事件需要停止，设置为null
 - 同样鼠标松开后，onmouseup事件自己本身也要设置为null
     - 否则点击document页面的空白地方，松开鼠标一样会触发此事件
@@ -108,3 +109,89 @@ window.onload = function() {
     }
 }
 ```
+
+# 3. 浏览器自动搜索被拖拽元素
+
+浏览器自动搜索网页中拖拽的文字或图片，因此要取消浏览器这个默认行为。通过return false可以取消，但是不支持IE8
+
+```javascript
+元素.onmousedown = function(){
+    ...
+    return false
+}
+```
+
+对于IE8，setCapture
+```javascript
+box1.onmousedown = function(){
+    box1.setCapture();         // 捕获下一次鼠标点击事件，强制绑定到box1上，无论点击哪里
+     
+    document.onmousemove = function(){
+        ...
+    }
+    document.onmouseup = function(){
+        。。。
+        box1.releaseCapture();  // 当鼠标松开后，定制强制绑定事件
+    }
+}
+```
+- 通过强制绑定事件，来把所有鼠标操作都绑定给box1的移动，来避免拖拽搜索
+
+兼容所有浏览器
+
+```javascript
+box1.onmousedown = function(){
+
+    if(box1.setCapture){
+        box1.setCapture();   
+    };
+    
+    // box1.setCapture && box1.setCapture(); 
+          
+    document.onmousemove = function(){
+        ...
+    }
+    document.onmouseup = function(){
+        。。。
+        box1.releaseCapture && box1.releaseCapture();  
+    }
+    return false                    // firefox,chrome
+}
+```
+
+- `box1.setCapture && box1.setCapture();`，` box1.releaseCapture && box1.releaseCapture();`
+    - 当前面为true，则执行后面语句
+    - 前面为false，则直接放弃执行
+
+# 设置2个box都可以移动
+```javascript
+window.onload = function() {
+    function dragBox(boxId) {
+        var box = document.getElementById(boxId);
+        box.onmousedown = function(e) {
+            e = e || window.e
+            var offsetLeft = e.clientX - box.offsetLeft;
+            var offsetTop = e.clientY - box.offsetTop;
+
+            box.setCapture && box.setCapture();
+
+            document.onmousemove = function(e) {
+                e = e || window.e
+                box.style.left = e.clientX - offsetLeft + 'px';
+                box.style.top = e.clientY - offsetTop + 'px';
+            }
+            document.onmouseup = function() {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                box.releaseCapture && box.releaseCapture();
+            }
+            return false
+        }
+    }
+
+    dragBox('box1');
+    dragBox('box2');
+}
+```
+
+
