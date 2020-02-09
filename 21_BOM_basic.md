@@ -79,12 +79,38 @@ BOM对象在浏览器中
 # 4. screen
 
 # 5. window
+定时调用，每间隔一段时间，发生一次
+
+- setInterval(function(){}, ms)，将一个函数（回调函数），每隔一段时间执行依次
+  - 返回值，是个数字，作为定时器的唯一标识，用于关闭定时器
+  - clearInterval()关闭定时器，可以接收任意参数，如undefined，null都可以
+    - 如果参数有效，则停止定时器，参数无效则五动作
   
   
-  
-  
-  
-  
+```html
+<html>
+<head>
+    <script>
+        window.onload = function() {
+            var h1 = document.getElementById('h1');
+
+            var num = 1;
+            var timer1 = setInterval(() => {    // 每隔1000ms执行一遍这里的函数
+                h1.innerHTML = num++;
+                if (num == 11) {
+                    clearInterval(timer1);      // 关闭定时器
+                }
+            }, 1000);
+        };
+    </script>
+</head>
+
+<body>
+    <h1 id="h1"></h1>
+</body>
+</html>
+```
+### 练习：图片
   
   
   
