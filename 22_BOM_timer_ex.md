@@ -1,6 +1,8 @@
 
 # 计时器综合项目
 1. 点击按钮，box1向右移动👉
+2. 点击按钮，box1向左移动
+
 
 
 # 1. 点击按钮，box1向右移动
@@ -83,9 +85,10 @@
             // 1. box1 move right
             var btn1 = document.getElementById('btn1');
             var box1 = document.getElementById('box1');
-            var step = 100;
             btn1.onclick = function() {
                 var timer1 = setInterval(() => {
+                    var step = 100;
+
                     var oldValue = parseInt(getStyle(box1, 'left'));
                     var newValue = oldValue + step;
 
@@ -144,29 +147,6 @@
 
 ```html
 <head>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        
-        #line {
-            height: 1000px;
-            width: 0px;
-            border-left: 1px solid;
-            position: absolute;
-            /* 开启position定位，才能设置位置，否则下面不生效 */
-            top: 0px;
-            left: 800px;
-        }
-        
-        #box1 {
-            background-color: crimson;
-            height: 100px;
-            width: 100px;
-            position: absolute;
-        }
-    </style>
     <script>
         function getStyle(element, style) {
             if (window.getComputedStyle) {
@@ -180,12 +160,13 @@
             // 1. box1 move right
             var btn1 = document.getElementById('btn1');
             var box1 = document.getElementById('box1');
-            var step = 10;
             var timer1
             btn1.onclick = function() {
                 clearInterval(timer1);
 
                 timer1 = setInterval(() => {
+                    var step = 10;
+
                     var oldValue = parseInt(getStyle(box1, 'left'));
                     var newValue = oldValue + step;
 
@@ -214,10 +195,93 @@
   
   
   
+# 2. 点击按钮，box1向左移动
+
+```javascript
+btn1.onclick = function() {
+  ...
+};
+
+btn2.onclick = function() {
+    clearInterval(timer1);
+    timer1 = setInterval(() => {
+        var step = -10;                     // 步长改为负值
+
+        var oldValue = parseInt(getStyle(box1, 'left'));
+        var newValue = oldValue + step;
+
+        if (newValue < 0) {                 // 回到0点 
+            newValue = 0;
+        };
+        box1.style.left = newValue + 'px';
+
+        if (newValue == 0) {
+            clearInterval(timer1);
+        };
+    }, 30);
+}
+```
   
-  
-  
-  
+## 改进：提高函数通用性
+ 
+- 可以看查干湖btn1和btn2的大部分代码都是一样的，因此创建一个函数来统一使用
+
+```javascript
+function getStyle(element, style) {
+    if (window.getComputedStyle) {
+        return getComputedStyle(element, null)[style];
+    } else {
+        return element.currentStyle[style];
+    }
+}
+
+window.onload = function() {
+    // btn, button
+    // box, element to be moved 
+    // style, left, height, innerWidth 
+    // step, 10, 50 
+    // destination, 0 or 800
+
+    var timer1;
+
+    function moveBox(btn, box, style, step, destination) {
+        // var timer1; 下一次调用该函数，复发取消之前函数里面的定时器
+        // 因为每次调用该函数，都创建一个定时器，你的函数不能关闭群殴他人函数内的定时器
+
+        var btn = document.getElementById(btn);
+        var box = document.getElementById(box);
+        btn.onclick = function() {
+            clearInterval(timer1);
+
+            timer1 = setInterval(() => {
+                var oldValue = parseInt(getStyle(box, style));
+                console.log(oldValue);
+
+                if (destination == 800) {
+                    var newValue = oldValue + step;
+                } else if (destination == 0) {
+                    var newValue = oldValue - step;
+                }
+
+                if (newValue >= 800) {
+                    newValue = 800;
+                } else if (newValue <= 0) {
+                    newValue = 0;
+                };
+
+                box.style[style] = newValue + 'px';
+
+                if (newValue >= 800 || newValue <= 0) {
+                    clearInterval(timer1);
+                }
+            }, 30);
+        };
+    };
+
+    moveBox('btn1', 'box1', 'left', 10, 800);
+    moveBox('btn2', 'box1', 'left', 10, 0);
+}
+```
   
   
 
