@@ -100,7 +100,7 @@
     }
 </script>
 ```
-- 问题：当步长step是一个奇怪的数字，比如11，13，17等，不会在定时器走的过程中整整好好等于800
+- **问题1**：当步长step是一个奇怪的数字，比如11，13，17等，不会在定时器走的过程中整整好好等于800
   - 如果想要box1正好停在800px线上，需要强制设定大于800的话，就等于800
     ```diff
     btn1.onclick = function() {
@@ -119,7 +119,39 @@
         }, 30);
     }
     ```
+- **问题2**：当多次点击按钮后，多个定时器会被触发，而所有定时器都是给box1的，那么box1的速度聚会不断增加。而且新定时器会覆盖旧定时器，关闭定时器只能关闭最后一个，之前的无法关闭
+  - 同一个元素的定时器开始之前，先关闭这个元素上之前的定时器。按下按钮开始移动时，首先先关闭之前定时器
+  - 需要把定时器变量设置为全局变量，否则内层函数serinterval()的timer1变量无法在外层函数onclick()中被调用。全局定义变量，局部赋值变量
+    ```diff  
+    + var timer1
+      btn1.onclick = function() {
+    +    clearInterval(timer1);
 
+    -    var timer1 = setInterval(() => {
+    +    timer1 = setInterval(() => {
+            var oldValue = parseInt(getStyle(box1, 'left'));
+            var newValue = oldValue + step;
+
+            if (newValue > 800) {
+                newValue = 800;
+            };
+            box1.style.left = newValue + 'px';
+            if (newValue == 800) {
+                clearInterval(timer1);
+            };
+        }, 30);
+    ```
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 
