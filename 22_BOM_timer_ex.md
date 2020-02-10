@@ -60,75 +60,65 @@
 
 代码
 ```html
-<head>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        
-        #line {
-            height: 1000px;
-            width: 0px;
-            border-left: 1px solid;
-            position: absolute;
-            /* 开启position定位，才能设置位置，否则下面不生效!!!!!!!!!!!!!!!!!!!! */
-            top: 0px;
-            left: 800px;
-        }
-        
-        #box1 {
-            background-color: crimson;
-            height: 100px;
-            width: 100px;
-            position: absolute;
-        }
-        /* #box2 {
-            background-color: darkblue;
-            height: 100px;
-            width: 100px;
-            position: relative;
-        } */
-    </style>
-    <script>
-        function getStyle(element, style) {
-            if (window.getComputedStyle) {
-                return getComputedStyle(element, null)[style];
-            } else {
-                return element.currentStyle[style];
-            }
-        }
+<style>
+    #line {
+        height: 1000px;
+        width: 0px;
+        border-left: 1px solid;
+        position: absolute;
+        /* 开启position定位，才能设置位置，否则下面不生效!!!!!!!!!!!!!!!!!!!! */
+        top: 0px;
+        left: 800px;
+    }
 
-        window.onload = function() {
-            // 1. box1 move right
-            var btn1 = document.getElementById('btn1');
-            var box1 = document.getElementById('box1');
-            var step = 100;
-            btn1.onclick = function() {
-                var timer1 = setInterval(() => {
-                    var oldValue = parseInt(getStyle(box1, 'left'));
-                    var newValue = oldValue + step;
-
-                    box1.style.left = newValue + 'px';
-                    if (newValue >= 800) {
-                        clearInterval(timer1);
-                    }
-                }, 30);
-            }
-
+</style>
+<script>
+    function getStyle(element, style) {
+        if (window.getComputedStyle) {
+            return getComputedStyle(element, null)[style];
+        } else {
+            return element.currentStyle[style];
         }
-    </script>
-</head>
+    }
 
-<body>
-    <button id="btn1">box1 forward</button>
-    <button id="btn2">box1 backward</button>
-    <div id="box1" class="box"></div>
-    <div id="box2" class="box"></div>
-    <div id="line"></div>
-</body>
+    window.onload = function() {
+        // 1. box1 move right
+        var btn1 = document.getElementById('btn1');
+        var box1 = document.getElementById('box1');
+        var step = 100;
+        btn1.onclick = function() {
+            var timer1 = setInterval(() => {
+                var oldValue = parseInt(getStyle(box1, 'left'));
+                var newValue = oldValue + step;
+
+                box1.style.left = newValue + 'px';
+                if (newValue >= 800) {
+                    clearInterval(timer1);
+                }
+            }, 30);
+        }
+    }
+</script>
 ```
+- 问题：当步长step是一个奇怪的数字，比如11，13，17等，不会在定时器走的过程中整整好好等于800
+  - 如果想要box1正好停在800px线上，需要强制设定大于800的话，就等于800
+    ```diff
+    btn1.onclick = function() {
+        var timer1 = setInterval(() => {
+            var oldValue = parseInt(getStyle(box1, 'left'));
+            var newValue = oldValue + step;
 
+    +       if (newValue > 800) {
+    +           newValue = 800;
+    +       };
+            
+            box1.style.left = newValue + 'px';
+            if (newValue == 800) {
+                clearInterval(timer1);
+            };
+        }, 30);
+    }
+    ```
 
 
 
