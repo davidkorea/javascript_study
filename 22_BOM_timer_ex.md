@@ -1,7 +1,8 @@
 
 # 计时器综合项目
-1. 点击按钮，box1向右移动👉
-2. 点击按钮，box1向左移动
+1. 点击按钮1，box1向右移动
+2. 点击按钮2，box1向左移动
+3. 点击按钮3，box2向右移动
 
 
 
@@ -343,6 +344,64 @@ window.onload = function() {
     moveBox('btn2', 'box1', 'left', 10, 0);
 }
 ```
+
+
+# 3. 点击按钮2，box2向右移动
+
+```javascript
+moveBox('btn3', 'box2', 'left', 10, 800);
+```
+
+![Feb-10-2020 19-54-37](https://user-images.githubusercontent.com/26485327/74147954-43101700-4c3f-11ea-8737-e3da625b8c0c.gif)
+
+
+- box1移动时，box2会停止。一个运动，那么另一个会自动停止
+  - 因为不同元素box1和box2都通过同一个函数moveBOX绑定离开同一个定时器
+  - 然而定时器时timer1定义在了外层作用域，每次新调用moveBox函数，都是给这个外层作用域变量timer1赋值
+  - 当moveBox函数被新调用时，首先会操作清除定时器，也因此box2执行时会停止box1运动
+  - 需要给每个moveBox函数绑定不同的定时器
+    - **将定时器设置为每个对象的一个属性**，只要是对象object，就可以给其添加一个属性，即使这个对象不是自行创建的对象
+
+![Feb-10-2020 20-12-51](https://user-images.githubusercontent.com/26485327/74149049-caf72080-4c41-11ea-8a55-cca69e3e3e15.gif)
+
+```javascript
+
+function moveBox(btn, box, style, step, destination) {
+    var btn = document.getElementById(btn);
+    var box = document.getElementById(box);
+
+    btn.onclick = function() {
+        clearInterval(box.timer1);              // 关闭当前对象的定时器，而不会关闭其他对象的定时器
+
+        var currentValue = parseInt(getStyle(box, style));
+        if (currentValue >= destination) {
+            step = -step;
+        }
+
+        box.timer1 = setInterval(() => {        // 把timer设置为对象的属性，即给box对象添加一个timer属性
+            var oldValue = parseInt(getStyle(box, style));
+            var newValue = oldValue + step;
+
+            if ((step > 0 && newValue >= destination) || (step < 0 && newValue <= destination)) {
+                newValue = destination;
+            };
+
+            box.style[style] = newValue + 'px';
+
+            if (newValue >= 800 || newValue <= 0) {
+                clearInterval(box.timer1);      // 关闭定时器，也是关闭对应对象的定时器
+            }
+        }, 30);
+    };
+};
+```
+
+
+
+
+
+
+
 
 
 
