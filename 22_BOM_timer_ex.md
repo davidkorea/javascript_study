@@ -40,8 +40,32 @@
 </body>
 ```
 ### 改进：提高函数通用性
-- 向右，向左操作合在一个函数里面
-- 元素样式的更改不只是变更offsetLeft，还要适应更改height，width等属性
+元素样式的更改不只是变更offsetLeft，还要适应更改height，width等属性
+- **使用getComputedStyle，`getComputedStyle(box1, null).left` == `box1.offsetLeft`，二者功能一样，offsetLeft没有单位px，而前者有**
+- [15_DOM_css_ex.md#2-读取当前样式值](https://github.com/davidkorea/javascript_study/blob/master/15_DOM_css_ex.md#2-读取当前样式值)
+- 适配所有浏览器
+```javascript
+function getStyle(element, style) {
+    if (window.getComputedStyle) {
+        return getComputedStyle(element, null)[style];  // chrome
+    } else {
+        return element.currentStyle[style];             // IE
+    }
+}
+
+var left = getStyle(box1, 'left');
+alert(left);
+```
+- 此时返回的数值带有单位px，需要只保留数字，`parseInt(getStyle(box1, 'left'))`
+
+
+
+
+
+
+
+
+
 
 
 
