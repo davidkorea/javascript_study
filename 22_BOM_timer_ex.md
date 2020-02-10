@@ -282,9 +282,67 @@ window.onload = function() {
     moveBox('btn2', 'box1', 'left', 10, 0);
 }
 ```
+- **问题**：虽然统合到一个函数里面，但是里面的条件判断0和800还是写死了
   
-  
+```javascript
+function getStyle(element, style) {
+    if (window.getComputedStyle) {
+        return getComputedStyle(element, null)[style];
+    } else {
+        return element.currentStyle[style];
+    }
+}
 
+window.onload = function() {
+    // btn, button
+    // box, element to be moved -
+    // style, left, height, innerWidth -
+    // step, 10, 50 
+    // destination, 0 or 800
+
+    var timer1;
+
+    function moveBox(btn, box, style, step, destination) {
+        var btn = document.getElementById(btn);
+        var box = document.getElementById(box);
+        btn.onclick = function() {
+            clearInterval(timer1);
+
+            var currentValue = parseInt(getStyle(box, style));
+            // dest 800, 元素的位置都会小于等于dest，step>0
+            // dest 0，元素位置都会大于等于dest，step<0
+            
+            if (currentValue >= destination) {
+                step = -step;
+            }
+
+            timer1 = setInterval(() => {
+                var oldValue = parseInt(getStyle(box, style));
+                var newValue = oldValue + step;
+
+                // if (destination == 800) {
+                //     var newValue = oldValue + step;
+                // } else if (destination == 0) {
+                //     var newValue = oldValue - step;
+                // }
+
+                if ((step > 0 && newValue >= destination) || (step < 0 && newValue <= destination)) {
+                    newValue = destination;
+                };
+
+                box.style[style] = newValue + 'px';
+
+                if (newValue >= 800 || newValue <= 0) {
+                    clearInterval(timer1);
+                }
+            }, 30);
+        };
+    };
+
+    moveBox('btn1', 'box1', 'left', 10, 800);
+    moveBox('btn2', 'box1', 'left', 10, 0);
+}
+```
 
 
 
