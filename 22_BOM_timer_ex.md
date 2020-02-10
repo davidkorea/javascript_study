@@ -44,21 +44,90 @@
 - **使用getComputedStyle，`getComputedStyle(box1, null).left` == `box1.offsetLeft`，二者功能一样，offsetLeft没有单位px，而前者有**
 - [15_DOM_css_ex.md#2-读取当前样式值](https://github.com/davidkorea/javascript_study/blob/master/15_DOM_css_ex.md#2-读取当前样式值)
 - 适配所有浏览器
-```javascript
-function getStyle(element, style) {
-    if (window.getComputedStyle) {
-        return getComputedStyle(element, null)[style];  // chrome
-    } else {
-        return element.currentStyle[style];             // IE
-    }
-}
+  ```javascript
+  function getStyle(element, style) {
+      if (window.getComputedStyle) {
+          return getComputedStyle(element, null)[style];  // chrome
+      } else {
+          return element.currentStyle[style];             // IE
+      }
+  }
 
-var left = getStyle(box1, 'left');
-alert(left);
+  var left = getStyle(box1, 'left');
+  alert(left);
+  ```
+  - 此时返回的数值带有单位px，需要只保留数字，`parseInt(getStyle(box1, 'left'))`
+
+代码
+```html
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #line {
+            height: 1000px;
+            width: 0px;
+            border-left: 1px solid;
+            position: absolute;
+            /* 开启position定位，才能设置位置，否则下面不生效!!!!!!!!!!!!!!!!!!!! */
+            top: 0px;
+            left: 800px;
+        }
+        
+        #box1 {
+            background-color: crimson;
+            height: 100px;
+            width: 100px;
+            position: absolute;
+        }
+        /* #box2 {
+            background-color: darkblue;
+            height: 100px;
+            width: 100px;
+            position: relative;
+        } */
+    </style>
+    <script>
+        function getStyle(element, style) {
+            if (window.getComputedStyle) {
+                return getComputedStyle(element, null)[style];
+            } else {
+                return element.currentStyle[style];
+            }
+        }
+
+        window.onload = function() {
+            // 1. box1 move right
+            var btn1 = document.getElementById('btn1');
+            var box1 = document.getElementById('box1');
+            var step = 100;
+            btn1.onclick = function() {
+                var timer1 = setInterval(() => {
+                    var oldValue = parseInt(getStyle(box1, 'left'));
+                    var newValue = oldValue + step;
+
+                    box1.style.left = newValue + 'px';
+                    if (newValue >= 800) {
+                        clearInterval(timer1);
+                    }
+                }, 30);
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <button id="btn1">box1 forward</button>
+    <button id="btn2">box1 backward</button>
+    <div id="box1" class="box"></div>
+    <div id="box2" class="box"></div>
+    <div id="line"></div>
+</body>
 ```
-- 此时返回的数值带有单位px，需要只保留数字，`parseInt(getStyle(box1, 'left'))`
-
-
 
 
 
