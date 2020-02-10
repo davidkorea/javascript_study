@@ -3,6 +3,7 @@
 1. 点击按钮1，box1向右移动
 2. 点击按钮2，box1向左移动
 3. 点击按钮3，box2向右移动
+4. 不止左右移动，长宽高各种属性都可以变化
 
 
 
@@ -395,6 +396,112 @@ function moveBox(btn, box, style, step, destination) {
     };
 };
 ```
+
+# 4. 其他属性变化，增加回调函数
+
+![Feb-10-2020 20-43-57](https://user-images.githubusercontent.com/26485327/74150976-1ad7e680-4c46-11ea-939f-9693302fca6a.gif)
+
+
+- 统合函数中，添加一个参数作为回调函数，可以在调用该统合函数时，执行这个回调函数
+  ```javascript
+  /*
+   - btn, button
+   - box, element to be moved 
+   - style, left, height, Width 
+   - step, 10, 50 
+   - destination, 0 or 800
+   - callback, 
+  */
+
+  function moveBox(btn, box, style, step, destination, callback) {
+  ...
+  callback();  // 统合函数中的合适位置，执行回调函数
+  ...
+  };
+  
+  moveBox('btn5', 'box2', 'width', 10, 800, function() {alert('hi~~');});
+  ```
+  - 回调函数的作用就是，可以借此，才回调函数里面再次调用自己
+    ```javascript
+    moveBox('btn5', 'box2', 'width', 10, 800, function() {
+      moveBox('btn5', 'box2', 'width', 10, 800);
+    });
+    ```
+  - 但是上面的统合函数，还需要改一下，需要把onclick事件拿出到统合函数后面，否则回调函数中调用自己的时候，还需要点击按钮，不能连续执行
+
+
+- 修改统合函数，将onclick拿出，以及将回调函数设置为可选项，有责调用，无则忽略
+```javascript
+/*
+ - box, element to be moved -
+ - style, left, height, innerWidth -
+ - step, 10, 50 -
+ - destination, 0 or 800
+ - callback,
+*/
+
+function moveBox(box, style, step, destination, callback) {
+    var box = document.getElementById(box);
+
+    clearInterval(box.timer1);
+
+    var currentValue = parseInt(getStyle(box, style));
+    // dest 800, 元素的位置会小于等于dest，step>0
+    // dest 0，元素位置会大于等于dest，step<0
+    if (currentValue >= destination) {
+        step = -step;
+    }
+
+    box.timer1 = setInterval(() => {
+        var oldValue = parseInt(getStyle(box, style));
+        var newValue = oldValue + step;
+
+        if ((step > 0 && newValue >= destination) || (step < 0 && newValue <= destination)) {
+            newValue = destination;
+        };
+
+        box.style[style] = newValue + 'px';
+
+        if (newValue >= 800 || newValue <= 0) {
+            clearInterval(box.timer1);
+            callback && callback();     // 有则调用，无则忽略
+        }
+    }, 30);
+};
+
+var btn1 = document.getElementById('btn1');
+var btn2 = document.getElementById('btn2');
+var btn3 = document.getElementById('btn3');
+var btn4 = document.getElementById('btn4');
+var btn5 = document.getElementById('btn5');
+
+btn1.onclick = function() {
+    moveBox('box1', 'left', 10, 800);
+};
+btn2.onclick = function() {
+    moveBox('box1', 'left', 10, 0);
+};
+btn3.onclick = function() {
+    moveBox('box2', 'left', 10, 800);
+};
+btn4.onclick = function() {
+    moveBox('box2', 'left', 10, 0);
+};
+
+btn5.onclick = function() {
+    moveBox('box2', 'width', 10, 800, function() {
+        moveBox('box2', 'height', 10, 300);
+    });
+};
+```
+- **注意**：连续调用本身，需要放在回调函数中，不能直接函数自身直接放在调用函数的位置
+  - `moveBox('box2', 'width', 10, 800, moveBox('box2', 'height', 10, 300));`，不可以这样使用
+
+
+
+
+
+
 
 
 
