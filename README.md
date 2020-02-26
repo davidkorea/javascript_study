@@ -1,3 +1,14 @@
+```javascript
+window.onload = function(){
+  ...
+}
+```
+```javascript
+$(function(){
+  ...
+})
+```
+
 # javascript_study
 
 每个浏览器都有自己实现JavaScript的引擎，如Chrome的V8引擎，Firefox的spidermonkey引擎，Safari的JavaScriptCore
