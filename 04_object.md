@@ -1,3 +1,17 @@
+## 获取对象中所有的 keys
+- `Object.keys($Obj)`
+```javascript
+obj = {
+    a: 1,
+    b: 2
+}
+
+Object.keys(obj)
+// ['a', 'b']
+```
+
+-----
+
 ### 数据类型
 - 一般数据类型
     - string
